@@ -8,3 +8,17 @@ chrome.runtime.onInstalled.addListener(function () {
   //   console.log("The color is green.");
   // });
 });
+
+chrome.browserAction.onClicked.addListener(
+  /**
+   * @param currentTab see https://developer.chrome.com/extensions/tabs#type-Tab
+   */
+  (currentTab) => {
+    console.log("Extension Icon Clicked!");
+
+    // executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
+    chrome.tabs.executeScript(currentTab.id, {
+      file: "src/modal/modal.js",
+    });
+  }
+);

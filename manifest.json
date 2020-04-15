@@ -17,8 +17,8 @@
       "16": "assets/img/icon-16.png",
       "32": "assets/img/icon-32.png"
     },
-    "default_title": "Session Quicksave",
-    "default_popup": "src/popup/popup.html"
+    "default_title": "Session Quicksave"
   },
-  "permissions": []
+  "web_accessible_resources": ["src/modal/modal-iframe.css", "src/modal/modal-iframe.html"],
+  "permissions": ["activeTab", "tabs"]
 }
