@@ -2,6 +2,12 @@
   "name": "chrome-session-quicksave",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@capacitor/core": "2.0.1",
     "@ionic/react": "^5.0.7",
@@ -23,12 +29,6 @@
     "react-scripts": "3.4.1",
     "typescript": "3.8.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -47,5 +47,5 @@
   "devDependencies": {
     "@capacitor/cli": "2.0.1"
   },
-  "description": "An Ionic project"
+  "description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)"
 }
