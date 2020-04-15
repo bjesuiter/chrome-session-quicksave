@@ -1,7 +1,0 @@
-{
-  "name": "chrome-session-quicksave",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

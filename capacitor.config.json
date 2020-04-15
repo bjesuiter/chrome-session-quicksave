@@ -1,8 +1,0 @@
-{
-  "appId": "io.ionic.starter",
-  "appName": "chrome-session-quicksave",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
-  "cordova": {}
-}
