@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.12.0"
+  },
   "description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)"
 }
