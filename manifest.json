@@ -5,8 +5,8 @@
   "homepage_url": "https://github.com/bjesuiter/chrome-session-quicksave",
   "description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
   "icons": {
-    "16": "assets/img/favicon-16.ico",
-    "32": "assets/img/favicon-32.ico"
+    "16": "assets/img/icon-16.png",
+    "32": "assets/img/icon-32.png"
   },
   "background": {
     "scripts": ["src/background.js"],
@@ -14,8 +14,8 @@
   },
   "browser_action": {
     "default_icon": {
-      "16": "assets/img/favicon-16.ico",
-      "32": "assets/img/favicon-32.ico"
+      "16": "assets/img/icon-16.png",
+      "32": "assets/img/icon-32.png"
     },
     "default_title": "Session Quicksave",
     "default_popup": "src/popup/popup.html"
