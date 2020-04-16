@@ -2,7 +2,10 @@
   "name": "chrome-session-quicksave",
   "version": "0.0.1",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
   "dependencies": {
     "date-fns": "^2.12.0"
   },
