@@ -20,10 +20,10 @@ chrome.browserAction.onClicked.addListener(
 
     const sessionName = prompt(
       "Please insert a name for the session",
-      "New Session " + format(new Date(), "YYYY-MM-DD")
+      "New Session " + format(new Date(), "yyyy-MM-dd")
     );
 
-    console.log(`New Session name: ${sessionName}`);
+    alert(`New Session name: ${sessionName}`);
 
     // executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
     // injects modal.js into the current web page to show ionic component boxes
