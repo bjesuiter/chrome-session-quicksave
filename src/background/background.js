@@ -1,4 +1,5 @@
-import { format } from "../../node_modules/date-fns/index.js";
+import format from "../../node_modules/date-fns/format/index.js";
+import { searchBookmarkFolders } from "./bookmark-service";
 
 // Code to run when extension gets installed
 chrome.runtime.onInstalled.addListener(function () {
@@ -15,7 +16,7 @@ chrome.browserAction.onClicked.addListener(
   /**
    * @param currentTab see https://developer.chrome.com/extensions/tabs#type-Tab
    */
-  (currentTab) => {
+  async (currentTab) => {
     console.log("Extension Icon Clicked!");
 
     const sessionName = prompt(
@@ -23,7 +24,11 @@ chrome.browserAction.onClicked.addListener(
       "New Session " + format(new Date(), "yyyy-MM-dd")
     );
 
-    alert(`New Session name: ${sessionName}`);
+    // this uses the first result, may break easily!
+    // replace with target folder selection via plugin later
+    const [sessionsFolder] = await searchBookmarkFolders("Sessions");
+
+    console.log("SessionsFolder: ", sessionsFolder);
 
     // executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
     // injects modal.js into the current web page to show ionic component boxes

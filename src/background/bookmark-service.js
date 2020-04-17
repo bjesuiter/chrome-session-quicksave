@@ -39,3 +39,20 @@ export async function getBookmarkTreeComplete() {
     });
   });
 }
+
+/**
+ *
+ * Docs: https://developer.chrome.com/extensions/bookmarks#method-search
+ * @param {string} folderName
+ */
+export async function searchBookmarkFolders(folderName) {
+  return new Promise((resolve) => {
+    chrome.bookmarks.search(
+      {
+        url: null,
+        title: folderName,
+      },
+      (results) => resolve(results)
+    );
+  });
+}
