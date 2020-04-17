@@ -1,21 +1,21 @@
 {
-  "name": "Session Quicksave",
-  "homepage_url": "https://github.com/bjesuiter/chrome-session-quicksave",
-  "description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
-  "icons": {
-    "16": "assets/img/icon-16.png",
-    "32": "assets/img/icon-32.png"
-  },
-  "background": {
-    "scripts": ["background/background.js"],
-    "persistent": true
-  },
-  "browser_action": {
-    "default_icon": {
-      "16": "assets/img/icon-16.png",
-      "32": "assets/img/icon-32.png"
-    },
-    "default_title": "Session Quicksave"
-  },
-  "permissions": ["storage", "activeTab", "tabs", "bookmarks"]
+	"name": "Session Quicksave",
+	"homepage_url": "https://github.com/bjesuiter/chrome-session-quicksave",
+	"description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
+	"icons": {
+		"16": "assets/img/icon-16.png",
+		"32": "assets/img/icon-32.png"
+	},
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": true
+	},
+	"browser_action": {
+		"default_icon": {
+			"16": "assets/img/icon-16.png",
+			"32": "assets/img/icon-32.png"
+		},
+		"default_title": "Session Quicksave"
+	},
+	"permissions": ["storage", "activeTab", "tabs", "bookmarks"]
 }
