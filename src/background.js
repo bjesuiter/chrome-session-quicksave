@@ -1,6 +1,6 @@
-import format from '../../node_modules/date-fns/format/index.js';
-import {searchBookmarkFolders, saveSession} from './bookmark-service';
-import {getTabsInWindow} from './tabs-service.js';
+import format from 'date-fns/format';
+import {searchBookmarkFolders, saveSession} from './chrome-services/bookmark-service';
+import {getTabsInWindow} from './chrome-services/tabs-service.js';
 
 // Code to run when extension gets installed
 chrome.runtime.onInstalled.addListener(function () {
