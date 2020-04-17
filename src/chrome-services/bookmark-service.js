@@ -62,6 +62,18 @@ export async function searchBookmarkFolders(folderName) {
  *
  * @param {*} parentId
  * @param {*} folderName
+ * @returns {boolean} true, when folder exists
+ */
+export async function folderExists(parentId, folderName) {
+	const parentNode = await getBookmarkNode(parentId);
+	const result = parentNode.children.find(childNode => childNode.title === folderName);
+	return !!result;
+}
+
+/**
+ *
+ * @param {*} parentId
+ * @param {*} folderName
  * @returns Promise, which resolves with the created BookmarkTreeNode for the folder
  */
 export async function createBookmarkFolder(parentId, folderName) {
@@ -103,6 +115,12 @@ export async function saveSession(parentId, sessionName, tabs, options) {
 	const optionDefaults = {mode: 'overwrite'};
 	options = {...optionDefaults, ...options};
 	const {mode} = options;
+
+	// check if new session does already exist
+	const sessionFolderExists = folderExists(sessionName);
+	if (sessionFolderExists && mode === 'overwrite') {
+		console.log('Overwrite existing session folder');
+	}
 
 	// create new Folder for session
 	// TODO: Check if folder is already available & which mode is set (overwrite, error, ...)
