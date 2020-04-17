@@ -17,5 +17,5 @@
 		},
 		"default_title": "Session Quicksave"
 	},
-	"web_accessible_resources": ["assets/img/icon-512.png"]
+	"web_accessible_resources": ["assets/icons/*.png", "assets/img/*.png"]
 }
