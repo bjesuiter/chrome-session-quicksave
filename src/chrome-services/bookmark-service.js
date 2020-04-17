@@ -19,9 +19,8 @@ export async function getBookmarkNodes(...bookmarkIds) {
  * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>} a single BookmarkTreeNode
  */
 export async function getBookmarkNode(bookmarkId) {
-	return new Promise(resolve => {
-		chrome.bookmarks.get(bookmarkId, resolve);
-	});
+	const [node] = await getBookmarkNodes(bookmarkId);
+	return node;
 }
 
 /**
@@ -29,6 +28,12 @@ export async function getBookmarkNode(bookmarkId) {
  */
 export async function getBookmarkRoot() {
 	return getBookmarkNode('0');
+}
+
+export async function getBookmarkChildren(parentId) {
+	return new Promise(resolve => {
+		chrome.bookmarks.getChildren(parentId, resolve);
+	});
 }
 
 /**
@@ -64,9 +69,9 @@ export async function searchBookmarkFolders(folderName) {
  * @param {*} folderName
  * @returns {boolean} true, when folder exists
  */
-export async function folderExists(parentId, folderName) {
-	const parentNode = await getBookmarkNode(parentId);
-	const result = parentNode.children.find(childNode => childNode.title === folderName);
+export async function bookmarkFolderExists(parentId, folderName) {
+	const children = await getBookmarkChildren(parentId);
+	const result = children.find(childNode => childNode.title === folderName);
 	return !!result;
 }
 
@@ -112,14 +117,20 @@ export async function createBookmarksForTabs(parentId, tabs) {
  * @param {*} options
  */
 export async function saveSession(parentId, sessionName, tabs, options) {
-	const optionDefaults = {mode: 'overwrite'};
+	const optionDefaults = {mode: 'alwaysNew'};
 	options = {...optionDefaults, ...options};
+	// mode can be: overwrite, alwaysNew (creates new folder with same name regardless of existing), ask
 	const {mode} = options;
 
 	// check if new session does already exist
-	const sessionFolderExists = folderExists(sessionName);
-	if (sessionFolderExists && mode === 'overwrite') {
+	const sessionsFolderExists = await bookmarkFolderExists(parentId, sessionName);
+	if (sessionsFolderExists && mode === 'overwrite') {
 		console.log('Overwrite existing session folder');
+		// TODO: delete existing session folder
+	} else if (sessionsFolderExists && mode === 'alwaysNew') {
+		// do nothing, simply create sessionFolder and child bookmarks as is
+	} else if (sessionsFolderExists && mode === 'ask') {
+		// TODO: ask the user what to do
 	}
 
 	// create new Folder for session
