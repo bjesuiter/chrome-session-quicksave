@@ -1,5 +1,5 @@
 import format from "../../node_modules/date-fns/format/index.js";
-import { searchBookmarkFolders } from "./bookmark-service";
+import { searchBookmarkFolders, saveSession } from "./bookmark-service";
 
 // Code to run when extension gets installed
 chrome.runtime.onInstalled.addListener(function () {
@@ -29,6 +29,9 @@ chrome.browserAction.onClicked.addListener(
     const [sessionsFolder] = await searchBookmarkFolders("Sessions");
 
     console.log("SessionsFolder: ", sessionsFolder);
+
+    // TODO: saveSession
+    const sessionFolder = await saveSession(sessionsFolder.id, sessionName);
 
     // executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
     // injects modal.js into the current web page to show ionic component boxes

@@ -4,8 +4,8 @@
 
 /**
  *
- * @param  {...any} bookmarkIds
- * @returns Promise, which resolves with array of BookmarkTreeNodes
+ * @param  {...string} bookmarkIds
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNodes>}
  */
 export async function getBookmarkNodes(...bookmarkIds) {
   return new Promise((resolve) => {
@@ -16,7 +16,7 @@ export async function getBookmarkNodes(...bookmarkIds) {
 /**
  * An alias function for getBookmarkNodes which returns a single value instead of an array
  * @param {string} bookmarkId
- * @returns {Promise<BookmarkTreeNodes>} a single BookmarkTreeNode
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>} a single BookmarkTreeNode
  */
 export async function getBookmarkNode(bookmarkId) {
   return new Promise((resolve) => {
@@ -24,12 +24,15 @@ export async function getBookmarkNode(bookmarkId) {
   });
 }
 
+/**
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>}
+ */
 export async function getBookmarkRoot() {
   return getBookmarkNode("0");
 }
 
 /**
- * @returns Promise, which resolves to array of all available bookmarkTreeNodes
+ * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNodes>>}resolves to array of all available BookmarkTreeNodes
  */
 export async function getBookmarkTreeComplete() {
   return new Promise((resolve) => {
@@ -68,3 +71,22 @@ export async function createBookmarkFolder(parentId, folderName) {
 }
 
 export async function createBookmarks() {}
+
+/**
+ * Combines several simpler bookmark manipulation functions to save a bunch of tabs as a session
+ * @param {string} parentId
+ * @param {string} sessionName
+ * @param {Array<chrome.tabs.Tab>} tabs
+ * @param {*} options
+ */
+export async function saveSession(parentId, sessionName, tabs, options) {
+  const optionDefaults = { mode: "overwrite" };
+  options = { ...optionDefaults, ...options };
+  const { mode } = options;
+
+  // create new Folder for session
+  // TODO: Check if folder is already available & which mode is set (overwrite, error, ...)
+  const sessionFolder = await createBookmarkFolder(parentId, sessionName);
+
+  return sessionFolder;
+}
