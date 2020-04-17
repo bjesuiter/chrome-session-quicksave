@@ -1,27 +1,26 @@
 /**
  * https://developer.chrome.com/extensions/bookmarks
  */
-const folderToStoreNewSessions = "Sessions";
 
 /**
  *
  * @param  {...any} bookmarkIds
- * @returns array of BookmarkTreeNodes
+ * @returns Promise, which resolves with array of BookmarkTreeNodes
  */
 export async function getBookmarkNodes(...bookmarkIds) {
   return new Promise((resolve) => {
-    chrome.bookmarks.get(bookmarkIds, (resultNodes) => resolve(resultNodes));
+    chrome.bookmarks.get(bookmarkIds, resolve);
   });
 }
 
 /**
  * An alias function for getBookmarkNodes which returns a single value instead of an array
  * @param {string} bookmarkId
- * @returns {bookmarkTreeNodes} a single BookmarkTreeNode
+ * @returns {Promise<BookmarkTreeNodes>} a single BookmarkTreeNode
  */
 export async function getBookmarkNode(bookmarkId) {
   return new Promise((resolve) => {
-    chrome.bookmarks.get(bookmarkId, (resultNode) => resolve(resultNode));
+    chrome.bookmarks.get(bookmarkId, resolve);
   });
 }
 
@@ -30,13 +29,11 @@ export async function getBookmarkRoot() {
 }
 
 /**
- * @returns Promise
+ * @returns Promise, which resolves to array of all available bookmarkTreeNodes
  */
 export async function getBookmarkTreeComplete() {
   return new Promise((resolve) => {
-    chrome.bookmarks.getTree((bookmarkTreeNodes) => {
-      resolve(bookmarkTreeNodes);
-    });
+    chrome.bookmarks.getTree(resolve);
   });
 }
 
@@ -44,6 +41,7 @@ export async function getBookmarkTreeComplete() {
  *
  * Docs: https://developer.chrome.com/extensions/bookmarks#method-search
  * @param {string} folderName
+ * @returns array of BookmarkTreeNodes for folders
  */
 export async function searchBookmarkFolders(folderName) {
   return new Promise((resolve) => {
@@ -52,7 +50,21 @@ export async function searchBookmarkFolders(folderName) {
         url: null,
         title: folderName,
       },
-      (results) => resolve(results)
+      resolve
     );
   });
 }
+
+/**
+ *
+ * @param {*} parentId
+ * @param {*} folderName
+ * @returns Promise, which resolves with the created BookmarkTreeNode for the folder
+ */
+export async function createBookmarkFolder(parentId, folderName) {
+  return new Promise((resolve) => {
+    chrome.bookmarks.create({ parentId, title: folderName, url: null }, resolve);
+  });
+}
+
+export async function createBookmarks() {}
