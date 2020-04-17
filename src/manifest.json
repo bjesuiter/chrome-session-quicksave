@@ -16,6 +16,5 @@
 			"32": "assets/img/icon-32.png"
 		},
 		"default_title": "Session Quicksave"
-	},
-	"permissions": ["storage", "activeTab", "tabs", "bookmarks"]
+	}
 }
