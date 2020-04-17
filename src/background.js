@@ -1,6 +1,7 @@
 import format from 'date-fns/format';
 import {searchBookmarkFolders, saveSession} from './chrome-services/bookmark-service';
-import {getTabsInWindow} from './chrome-services/tabs-service.js';
+import {getTabsInWindow} from './chrome-services/tabs-service';
+import {showSimpleNotification} from './chrome-services/notification-service';
 
 // Code to run when extension gets installed
 chrome.runtime.onInstalled.addListener(function () {
@@ -36,6 +37,8 @@ chrome.browserAction.onClicked.addListener(
 		// TODO: saveSession
 		const newSessionFolder = await saveSession(sessionsFolder.id, sessionName, tabs);
 		console.log('NewSessionFolder', newSessionFolder);
+
+		showSimpleNotification('Session saved', `The new Session ${sessionName} was saved successfully`);
 
 		// executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
 		// injects modal.js into the current web page to show ionic component boxes
