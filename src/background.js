@@ -38,7 +38,10 @@ chrome.browserAction.onClicked.addListener(
 		const newSessionFolder = await saveSession(sessionsFolder.id, sessionName, tabs);
 		console.log('NewSessionFolder', newSessionFolder);
 
-		showSimpleNotification('Session saved', `The new Session ${sessionName} was saved successfully`);
+		const notificationId = await showSimpleNotification(
+			'Session saved',
+			`The new Session "${sessionName}" was saved successfully`
+		);
 
 		// executeScript docs: https://developer.chrome.com/extensions/tabs#method-executeScript
 		// injects modal.js into the current web page to show ionic component boxes
