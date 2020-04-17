@@ -17,5 +17,5 @@
     },
     "default_title": "Session Quicksave"
   },
-  "permissions": ["storage", "activeTab", "tabs"]
+  "permissions": ["storage", "activeTab", "tabs", "bookmarks"]
 }
