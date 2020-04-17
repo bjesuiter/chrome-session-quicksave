@@ -8,10 +8,9 @@ export async function showSimpleNotification(title, message) {
 	return new Promise(resolve => {
 		const notification = {
 			type: 'basic',
-			// iconUrl: ,
+			iconUrl: chrome.extension.getURL('assets/img/icon-512.png'),
 			title,
 			message
-			// eventTime:
 		};
 		chrome.notifications.create(null, notification, resolve);
 	});
