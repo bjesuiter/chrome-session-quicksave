@@ -3,10 +3,17 @@
 
 <head>
     <title>My Test Extension Options</title>
-    <!-- <script type="module" src="../../../node_modules/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="../../../node_modules/@ionic/core/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="../../../node_modules/@ionic/core/css/ionic.bundle.css" /> -->
-    <script type="module" src="options-main.ts"></script>
+    <!-- IMPORTANT: Since ionic web components are only stub files and will be lazy loaded on demand, 
+        they can't be bundled with webpack or rollup easily in a vanilla js/ts project at this time. 
+
+        So I'm forced to include ionic from a cdn here and add the appropriate security exceptions in manifest.json
+    -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+    <!-- Import own ts file -->
+    <script type="module" src="options.main.ts"></script>
 </head>
 
 <body>
