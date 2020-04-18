@@ -35,7 +35,6 @@ async function quicksaveSession(currentTab) {
 	const tabs = await getTabsInWindow(currentWindowId);
 	console.log('Tabs', tabs);
 
-	// TODO: saveSession
 	const newSessionFolder = await saveSession(sessionsFolder.id, sessionName, tabs);
 	console.log('NewSessionFolder', newSessionFolder);
 	return newSessionFolder;
