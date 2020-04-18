@@ -22,6 +22,7 @@ Rollup will generate the following fields in manifest.json:
 
 -   add an options page for extension configuration, allow config of
     -   'Sessions folder' - the default location where to save new sessions
+    -   Default Behavior when session folder does already exist (overwrite, create new, ask)
 
 ## Ideas after 1.0.0
 
