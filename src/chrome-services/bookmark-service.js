@@ -3,9 +3,10 @@
  */
 
 /**
- *
+ * Get arbitrary bookmark nodes by their IDs from chrome
  * @param  {...string} bookmarkIds
- * @returns {Promise<chrome.bookmarks.BookmarkTreeNodes>}
+ * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNodes>>} A promise which resolves to an array of bookmark nodes
+ * 																 for all specified bookmarkIds (regardless of hierarchy)
  */
 export async function getBookmarkNodes(...bookmarkIds) {
 	return new Promise(resolve => {
@@ -16,7 +17,7 @@ export async function getBookmarkNodes(...bookmarkIds) {
 /**
  * An alias function for getBookmarkNodes which returns a single value instead of an array
  * @param {string} bookmarkId
- * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>} a single BookmarkTreeNode
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>} Promise which resolves to a single bookmark node
  */
 export async function getBookmarkNode(bookmarkId) {
 	const [node] = await getBookmarkNodes(bookmarkId);
@@ -24,12 +25,18 @@ export async function getBookmarkNode(bookmarkId) {
 }
 
 /**
+ * Returns the root node of bookmarks
  * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>}
  */
 export async function getBookmarkRoot() {
 	return getBookmarkNode('0');
 }
 
+/**
+ * Gets all children for a bookmark folder specified by parendId
+ * @param {*} parentId
+ * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNodes>>} A Promise which resolves to an array of child nodes from the specified parentId
+ */
 export async function getBookmarkChildren(parentId) {
 	return new Promise(resolve => {
 		chrome.bookmarks.getChildren(parentId, resolve);
@@ -37,7 +44,9 @@ export async function getBookmarkChildren(parentId) {
 }
 
 /**
- * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNodes>>}resolves to array of all available BookmarkTreeNodes
+ * Returns the complete bookmark tree
+ * Warning: potentially very large result!
+ * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNodes>>}resolves to array of all available bookmark nodes
  */
 export async function getBookmarkTreeComplete() {
 	return new Promise(resolve => {
@@ -46,10 +55,10 @@ export async function getBookmarkTreeComplete() {
 }
 
 /**
- *
+ * Searches for folders with the specified folderName
  * Docs: https://developer.chrome.com/extensions/bookmarks#method-search
  * @param {string} folderName
- * @returns array of BookmarkTreeNodes for folders
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNodes} array of bookmark nodes for result folders
  */
 export async function searchBookmarkFolders(folderName) {
 	return new Promise(resolve => {
@@ -64,10 +73,10 @@ export async function searchBookmarkFolders(folderName) {
 }
 
 /**
- *
+ * Check if a folder with a given name does already exists inside a parent bookmark folder
  * @param {*} parentId
  * @param {*} folderName
- * @returns {boolean} true, when folder exists
+ * @returns {Promise<boolean>} true, when bookmark folder exists
  */
 export async function bookmarkFolderExists(parentId, folderName) {
 	const children = await getBookmarkChildren(parentId);
@@ -76,10 +85,10 @@ export async function bookmarkFolderExists(parentId, folderName) {
 }
 
 /**
- *
- * @param {*} parentId
- * @param {*} folderName
- * @returns Promise, which resolves with the created BookmarkTreeNode for the folder
+ * Creates a bookmark folder inside another folder specified by its parentId
+ * @param {*} parentId the parent folder where to create the new folder
+ * @param {*} folderName the name of the new bookmark folder
+ * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>}
  */
 export async function createBookmarkFolder(parentId, folderName) {
 	return new Promise(resolve => {
@@ -88,7 +97,7 @@ export async function createBookmarkFolder(parentId, folderName) {
 }
 
 /**
- *
+ * Creates a bookmark
  * @param {*} parentId
  * @param {*} title
  * @param {*} url
@@ -101,7 +110,7 @@ export async function createBookmark(parentId, url, title) {
 }
 
 /**
- *
+ * Creates a bookmark for each tab and saves it into the folder specified by parendId
  * @param {Array<chrome.tabs.Tab>} tabs
  */
 export async function createBookmarksForTabs(parentId, tabs) {
@@ -110,7 +119,7 @@ export async function createBookmarksForTabs(parentId, tabs) {
 }
 
 /**
- * Combines several simpler bookmark manipulation functions to save a bunch of tabs as a session
+ * Combines several simpler bookmark manipulation functions to save a bunch of tabs as a logical 'session'
  * @param {string} parentId
  * @param {string} sessionName
  * @param {Array<chrome.tabs.Tab>} tabs
@@ -134,7 +143,6 @@ export async function saveSession(parentId, sessionName, tabs, options) {
 	}
 
 	// create new Folder for session
-	// TODO: Check if folder is already available & which mode is set (overwrite, error, ...)
 	const sessionFolder = await createBookmarkFolder(parentId, sessionName);
 
 	await createBookmarksForTabs(sessionFolder.id, tabs);
