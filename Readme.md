@@ -48,10 +48,12 @@ Icon Pack:
 -   add a notification which allows jumping to the new session in the bookmark manager
 -   allow configuration of the pattern for default 'New Session' names.
 -   add more languages (default language is english)
+-   add notification when extension was updated, with link to changelog
 
 ## Unspecified Todos
 
 -   improve error html pages
+-   Add website for extension
 
 ---
 
