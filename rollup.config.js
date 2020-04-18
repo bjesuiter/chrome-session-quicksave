@@ -1,6 +1,9 @@
 // import { rollup } from "rollup";
-
+// https://www.npmjs.com/package/rollup-plugin-chrome-extension
 import {chromeExtension} from 'rollup-plugin-chrome-extension';
+
+// https://www.npmjs.com/package/rollup-plugin-postcss
+import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy2';
@@ -15,6 +18,9 @@ export default {
 	plugins: [
 		// always put chromeExtension() before other plugins
 		chromeExtension(),
+		postcss({
+			plugins: []
+		}),
 		typescript(),
 		resolve(),
 		copy({
