@@ -21,6 +21,13 @@ This project uses Icons from this icon pack:
 
 <div>Icons by <a href="https://www.flaticon.com/de/autoren/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a></div>
 
+### Error Icon
+
+Icon Pack:  
+<https://www.flaticon.com/de/kostenloses-icon/schliessen_1828665>
+
+<div>Icons by <a href="https://www.flaticon.com/de/autoren/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a></div>
+
 ## Next Steps / Improvements for 1.0.0
 
 -   add an options page for extension configuration, allow config of

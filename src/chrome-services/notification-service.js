@@ -21,5 +21,5 @@ export async function showSimpleNotification(title, message) {
 }
 
 export async function showError(title, message) {
-	return basicNotification(title, message, chrome.extension.getURL('assets/icons/warning.png'));
+	return basicNotification(title, message, chrome.extension.getURL('assets/icons/error.png'));
 }
