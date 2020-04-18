@@ -13,7 +13,7 @@
 		"512": "assets/img/icon-512.png"
 	},
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": ["background.ts"],
 		"persistent": true
 	},
 	"browser_action": {
