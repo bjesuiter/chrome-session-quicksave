@@ -17,3 +17,13 @@ Rollup will generate the following fields in manifest.json:
 ## Icons
 
 <div>Icons by <a href="https://www.flaticon.com/de/autoren/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a></div>
+
+## Next Steps / Improvements for 1.0.0
+
+-   add an options page for extension configuration, allow config of
+    -   'Sessions folder' - the default location where to save new sessions
+
+## Ideas after 1.0.0
+
+-   add a notification which allows jumping to the new session in the bookmark manager
+-   allow configuration of the pattern for default 'New Session' names.
