@@ -57,6 +57,10 @@ Icon Pack:
 
 ## Changelog
 
+### Next
+
+-   compile extension from typescript (which improves stability a lot!)
+
 ### 0.2.0 (Beta) - 2020-04-18 - initial release improved
 
 -   added more icons
