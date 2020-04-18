@@ -128,17 +128,26 @@ export async function createBookmarksForTabs(parentId: string, tabs: Array<chrom
 	return Promise.all(bookmarkPromises);
 }
 
+export interface SaveSessionOptions {
+	// mode can be: overwrite, alwaysNew (creates new folder with same name regardless of existing), ask
+	mode: 'overwrite' | 'alwaysNew' | 'ask';
+}
+
 /**
  * Combines several simpler bookmark manipulation functions to save a bunch of tabs as a logical 'session'
  * @param {string} parentId
  * @param {string} sessionName
  * @param {Array<chrome.tabs.Tab>} tabs
- * @param {*} options
+ * @param {SaveSessionOptions} options
  */
-export async function saveSession(parentId: string, sessionName: string, tabs: Array<chrome.tabs.Tab>, options: any) {
-	const optionDefaults = {mode: 'alwaysNew'};
+export async function saveSession(
+	parentId: string,
+	sessionName: string,
+	tabs: Array<chrome.tabs.Tab>,
+	options?: SaveSessionOptions
+) {
+	const optionDefaults: SaveSessionOptions = {mode: 'alwaysNew'};
 	options = {...optionDefaults, ...options};
-	// mode can be: overwrite, alwaysNew (creates new folder with same name regardless of existing), ask
 	const {mode} = options;
 
 	// check if new session does already exist
