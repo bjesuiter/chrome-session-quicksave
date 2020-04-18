@@ -21,5 +21,8 @@ export default {
 		copy({
 			assets: ['Readme.md', 'Changelog.md'],
 		}),
+		zip({
+			dir: 'dist',
+		}),
 	],
 };
