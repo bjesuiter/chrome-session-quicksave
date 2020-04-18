@@ -14,7 +14,10 @@ Rollup will generate the following fields in manifest.json:
 -   name
 -   description
 
-## Icons
+## Icon Attributions
+
+This project uses Icons from this icon pack:  
+<https://www.flaticon.com/de/packs/mobile-interface-3>
 
 <div>Icons by <a href="https://www.flaticon.com/de/autoren/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a></div>
 
