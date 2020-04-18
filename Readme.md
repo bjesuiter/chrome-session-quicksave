@@ -4,7 +4,7 @@ A Chrome extension for quickly saving all open tabs inside a window into the bro
 
 ## How to deploy new version to chrome webstore
 
--
+see https://developer.chrome.com/webstore/publish
 
 ## Rollup Setup
 
@@ -47,6 +47,7 @@ Icon Pack:
 
 -   add a notification which allows jumping to the new session in the bookmark manager
 -   allow configuration of the pattern for default 'New Session' names.
+-   add more languages (default language is english)
 
 ---
 
