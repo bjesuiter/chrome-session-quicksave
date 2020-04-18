@@ -53,7 +53,12 @@ Icon Pack:
 
 ## Changelog
 
-### 0.2.0 (Beta) - 2020-04-18
+### 0.2.0 (Beta) - 2020-04-18 - initial release improved
 
--   initial release
+-   added more icons
+-   improved readme and changelog
+-   improved code comment quality
+
+### 0.1.0 (Beta) - 2020-04-18 - initial release
+
 -   can save the urls from all tabs in the current window to a new folder under a folder called 'Sessions' somewhere in chrome bookmarks
