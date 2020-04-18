@@ -23,6 +23,10 @@
 		},
 		"default_title": "Session Quicksave"
 	},
-	"web_accessible_resources": ["assets/icons/*.png", "assets/img/*.png"],
+	"web_accessible_resources": [
+		"assets/icons/*.png",
+		"assets/img/*.png",
+		"assets/error-htmls/illegal-or-missing-url.html"
+	],
 	"permissions": ["bookmarks", "notifications", "storage", "tabs"]
 }
