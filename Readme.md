@@ -38,3 +38,12 @@ Icon Pack:
 
 -   add a notification which allows jumping to the new session in the bookmark manager
 -   allow configuration of the pattern for default 'New Session' names.
+
+---
+
+## Changelog
+
+### 0.2.0 (Beta) - 2020-04-18
+
+-   initial release
+-   can save the urls from all tabs in the current window to a new folder under a folder called 'Sessions' somewhere in chrome bookmarks
