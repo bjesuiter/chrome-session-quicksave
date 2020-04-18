@@ -49,6 +49,10 @@ Icon Pack:
 -   allow configuration of the pattern for default 'New Session' names.
 -   add more languages (default language is english)
 
+## Unspecified Todos
+
+-   improve error html pages
+
 ---
 
 ## Changelog
