@@ -1,20 +1,22 @@
 {
-  "name": "chrome-session-quicksave",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "rollup -c",
-    "watch": "rollup -c -w"
-  },
-  "dependencies": {
-    "@types/chrome": "0.0.104",
-    "date-fns": "^2.12.0"
-  },
-  "description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-node-resolve": "^7.1.3",
-    "rollup": "^2.6.1",
-    "rollup-plugin-chrome-extension": "^2.2.0"
-  }
+	"name": "chrome-session-quicksave",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"build": "rollup -c",
+		"watch": "rollup -c -w"
+	},
+	"dependencies": {
+		"@types/chrome": "0.0.104",
+		"date-fns": "^2.12.0"
+	},
+	"description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^11.1.0",
+		"@rollup/plugin-node-resolve": "^7.1.3",
+		"rollup": "^2.6.1",
+		"rollup-plugin-chrome-extension": "^2.2.0",
+		"rollup-plugin-copy2": "^0.1.3",
+		"rollup-plugin-zip": "^1.0.0"
+	}
 }
