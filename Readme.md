@@ -33,6 +33,7 @@ Icon Pack:
 -   add an options page for extension configuration, allow config of
     -   'Sessions folder' - the default location where to save new sessions
     -   Default Behavior when session folder does already exist (overwrite, create new, ask)
+-   switch to typescript: https://www.npmjs.com/package/@rollup/plugin-typescript
 
 ## Ideas after 1.0.0
 
