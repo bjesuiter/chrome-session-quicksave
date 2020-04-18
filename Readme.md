@@ -18,6 +18,11 @@ Rollup will generate the following fields in manifest.json:
 -   name
 -   description
 
+## Specialities about this repo
+
+-   uses Pikapkg ESM Build of React (real react esm build should come around react version 17 or so),  
+    see: https://github.com/pikapkg/react
+
 ## Icon Attributions
 
 This project uses Icons from this icon pack:  
