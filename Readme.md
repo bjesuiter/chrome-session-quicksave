@@ -2,6 +2,10 @@
 
 A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)
 
+## How to deploy new version to chrome webstore
+
+-
+
 ## Rollup Setup
 
 This extension will be packaged with rollup.  
@@ -28,12 +32,16 @@ Icon Pack:
 
 <div>Icons by <a href="https://www.flaticon.com/de/autoren/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/de/" title="Flaticon">www.flaticon.com</a></div>
 
+---
+
 ## Next Steps / Improvements for 1.0.0
 
 -   add an options page for extension configuration, allow config of
     -   'Sessions folder' - the default location where to save new sessions
     -   Default Behavior when session folder does already exist (overwrite, create new, ask)
 -   switch to typescript: https://www.npmjs.com/package/@rollup/plugin-typescript
+-   contribute to / fork https://github.com/mentaljam/rollup-plugin-copy2
+    to remove deprecated rollup functionality from it
 
 ## Ideas after 1.0.0
 
