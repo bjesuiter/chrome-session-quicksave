@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from '@material-ui/core';
 
 export default function App(props: any) {
 	return (
@@ -7,9 +6,22 @@ export default function App(props: any) {
 			<h1>Session Quicksave - Options</h1>
 			<label htmlFor="defaultSessionsFolderInput">Default Sessions Folder:</label>
 			<input type="text" id="defaultSessionsFolderInput" />
-
-{/* This button doesn't work right now, but JSX in general works */}
-			<Button color="primary">Material Core Button - Save</Button>
 		</div>
 	);
+
+	//  Favorite color:
+	// <select id="color">
+	//     <option value="red">red</option>
+	//     <option value="green">green</option>
+	//     <option value="blue">blue</option>
+	//     <option value="yellow">yellow</option>
+	// </select>
+
+	// <label>
+	//     <input type="checkbox" id="like">
+	//     I like colors.
+	// </label>
+
+	// <div id="status"></div>
+	// <button id="save">Save</button></label>
 }
