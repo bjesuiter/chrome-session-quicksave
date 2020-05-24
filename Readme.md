@@ -41,6 +41,9 @@ Icon Pack:
 
 ## Next Steps / Improvements for 1.0.0
 
+**Priority**: Switch to StencilJS foundation for waaay easier option page development with components.
+See <https://github.com/bjesuiter/stencil-js-chrome-extension>.
+
 -   add an options page for extension configuration, allow config of
     -   'Sessions folder' - the default location where to save new sessions
     -   Default Behavior when session folder does already exist (overwrite, create new, ask)
