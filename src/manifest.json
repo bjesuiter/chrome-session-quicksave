@@ -30,5 +30,5 @@
 		"assets/error-htmls/illegal-or-missing-url.html"
 	],
 	"permissions": ["bookmarks", "notifications", "storage", "tabs"],
-	"content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net; object-src 'self'"
+	"content_security_policy": "script-src 'self' ; object-src 'self'"
 }
