@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {IonButton} from '@ionic/react';
 import {getBookmarkTreeComplete} from '@chrome/bookmark-service';
 
 function renderListNodes(list: chrome.bookmarks.BookmarkTreeNode[]) {
@@ -23,7 +22,7 @@ export default function App(props: any) {
 			<hr />
 			<h1>Demo Area</h1>
 			{/* <button ion-button>Button</button> */}
-			<IonButton>Default</IonButton>
+			{/* <IonButton>Default</IonButton> */}
 			{/* <h2>Bookmark List</h2> */}
 			{/* <ul>
 				{renderListNodes(bookmarks)}
