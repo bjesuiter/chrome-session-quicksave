@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {IonButton} from '@ionic/react';
 import {getBookmarkTreeComplete} from '@chrome/bookmark-service';
 
 function renderListNodes(list: chrome.bookmarks.BookmarkTreeNode[]) {
-	return list.map(node => 
-	<li>
-		<h3>{node.title}</h3>
-		<ul>
-			{(node.children)? renderListNodes(node.children): undefined}
-		</ul>
-	</li>
-	)
+	return list.map(node => (
+		<li>
+			<h3>{node.title}</h3>
+			<ul>{node.children ? renderListNodes(node.children) : undefined}</ul>
+		</li>
+	));
 }
 
 export default function App(props: any) {
-
 	const [bookmarks, setBookmarks] = useState<Array<chrome.bookmarks.BookmarkTreeNode>>([]);
-	getBookmarkTreeComplete().then((bookmarks) => setBookmarks(bookmarks));
+	getBookmarkTreeComplete().then(bookmarks => setBookmarks(bookmarks));
 
 	return (
 		<div>
@@ -24,10 +22,12 @@ export default function App(props: any) {
 			<input type="text" id="defaultSessionsFolderInput" />
 			<hr />
 			<h1>Demo Area</h1>
-			<h2>Bookmark List</h2>
-			<ul>
+			{/* <button ion-button>Button</button> */}
+			<IonButton>Default</IonButton>
+			{/* <h2>Bookmark List</h2> */}
+			{/* <ul>
 				{renderListNodes(bookmarks)}
-			</ul>
+			</ul> */}
 		</div>
 	);
 
