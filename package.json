@@ -19,6 +19,9 @@
 		"@stencil/core": "^1.14.0",
 		"@stencil/router": "^1.0.1",
 		"@types/chrome": "0.0.114",
+		"load-json-file": "^6.2.0",
+		"write-json-file": "^4.3.0",
+		"esm": "^3.2.25",
 		"tslib": "^2.0.0",
 		"typescript": "^3.9.5"
 	}
