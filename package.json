@@ -24,5 +24,6 @@
 		"esm": "^3.2.25",
 		"tslib": "^2.0.0",
 		"typescript": "^3.9.5"
-	}
+	},
+	"license": "MIT"
 }
