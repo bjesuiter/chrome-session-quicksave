@@ -2,9 +2,10 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "src/assets/chrome"
+    "src/chrome"
   ],
   "compilerOptions": {
-    "outDir": "./www"
+    "rootDir": "src",
+    "outDir": "www"
   }
 }
