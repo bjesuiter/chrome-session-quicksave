@@ -1,0 +1,17 @@
+import loadJson from 'load-json-file';
+import saveJson from 'write-json-file';
+
+const manifestPath = 'www/manifest.json';
+
+(async () => {
+	try {
+		const packageJson = await loadJson('package.json');
+		const manifestJson = await loadJson(manifestPath);
+
+		manifestJson.version = packageJson.version;
+
+		await saveJson(manifestPath, manifestJson);
+	} catch (error) {
+		console.error(error);
+	}
+})();
