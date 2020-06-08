@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
-import {searchBookmarkFolders, saveSession} from '../../chrome-services/bookmark-service';
-import {getTabsInWindow} from '../../chrome-services/tabs-service';
-import {showSimpleNotification, showError} from '../../chrome-services/notification-service';
+import {searchBookmarkFolders, saveSession} from '@lib/chrome-services/bookmark-service';
+import {getTabsInWindow} from '@lib/chrome-services/tabs-service';
+import {showSimpleNotification, showError} from '@lib/chrome-services/notification-service';
 
 // Code to run when extension gets installed
 chrome.runtime.onInstalled.addListener(function () {
