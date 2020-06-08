@@ -10,6 +10,8 @@ const manifestPath = 'www/manifest.json';
 
 		manifestJson.version = packageJson.version;
 
+		console.log(`Added version ${manifestJson.version} to ${manifestPath}`);
+
 		await saveJson(manifestPath, manifestJson);
 	} catch (error) {
 		console.error(error);
