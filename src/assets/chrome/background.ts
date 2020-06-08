@@ -32,7 +32,8 @@ async function quicksaveSession(currentTab: chrome.tabs.Tab): Promise<void> {
 	// replace with target folder selection via plugin later
 	const [sessionsFolder]: chrome.bookmarks.BookmarkTreeNode[] = await searchBookmarkFolders('Sessions');
 	const tabs: chrome.tabs.Tab[] = await getTabsInWindow(currentWindowId);
-	const newSessionFolder = await saveSession(sessionsFolder.id, sessionName, tabs);
+	// const newSessionFolder = await saveSession(sessionsFolder.id, sessionName, tabs);
+	await saveSession(sessionsFolder.id, sessionName, tabs);
 
 	// Todo: show notification which allows jumping to the new session folder in bookmark manager view
 	await showSimpleNotification(
