@@ -1,0 +1,10 @@
+// This tsconfig file contains the config to compile assets/chrome scripts correctly
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/assets/chrome"
+  ],
+  "compilerOptions": {
+    "outDir": "./www"
+  }
+}
