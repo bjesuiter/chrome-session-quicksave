@@ -3,11 +3,13 @@
 	"version": "0.2.0",
 	"private": true,
 	"scripts": {
-		"build": "stencil build",
+    "build": "run-s build:stencil postbuild:add-version-to-manifest",
+    "build:stencil": "stencil build",
 		"start": "stencil build --dev --watch --serve",
 		"test": "stencil test --spec --e2e",
 		"test.watch": "stencil test --spec --e2e --watchAll",
-		"generate": "stencil generate"
+		"generate": "stencil generate",
+		"postbuild:add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js"
 	},
 	"dependencies": {
 		"@ionic/core": "^5.1.1",
@@ -19,11 +21,12 @@
 		"@stencil/core": "^1.14.0",
 		"@stencil/router": "^1.0.1",
 		"@types/chrome": "0.0.114",
-		"load-json-file": "^6.2.0",
-		"write-json-file": "^4.3.0",
 		"esm": "^3.2.25",
+		"load-json-file": "^6.2.0",
+		"npm-run-all": "^4.1.5",
 		"tslib": "^2.0.0",
-		"typescript": "^3.9.5"
+		"typescript": "^3.9.5",
+		"write-json-file": "^4.3.0"
 	},
 	"license": "MIT"
 }
