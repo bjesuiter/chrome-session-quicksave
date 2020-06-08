@@ -3,8 +3,11 @@
 	"version": "0.2.0",
 	"private": true,
 	"scripts": {
-		"build": "rollup -c",
-		"watch": "rollup -c -w"
+		"build": "stencil build",
+		"start": "stencil build --dev --watch --serve",
+		"test": "stencil test --spec --e2e",
+		"test.watch": "stencil test --spec --e2e --watchAll",
+		"generate": "stencil generate"
 	},
 	"dependencies": {
 		"@ionic/core": "^5.1.1",
@@ -16,7 +19,7 @@
 		"@stencil/core": "^1.14.0",
 		"@stencil/router": "^1.0.1",
 		"@types/chrome": "0.0.114",
-		"tslib": "^1.11.1",
-		"typescript": "^3.9.3"
+		"tslib": "^2.0.0",
+		"typescript": "^3.9.5"
 	}
 }
