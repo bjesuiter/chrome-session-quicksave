@@ -14,7 +14,7 @@
 		"512": "assets/img/icon-512.png"
 	},
 	"background": {
-		"scripts": ["background.ts"],
+		"scripts": ["/chrome/background.js"],
 		"persistent": true
 	},
 	"browser_action": {
@@ -24,7 +24,7 @@
 		},
 		"default_title": "Session Quicksave"
 	},
-	"options_page": "options.page.html",
+	"options_page": "/chrome/options-page/index.html",
 	"web_accessible_resources": [
 		"assets/icons/*.png",
 		"assets/img/*.png",
