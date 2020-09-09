@@ -4,9 +4,8 @@
 	"version": "0.2.0",
 	"private": true,
 	"scripts": {
-		"build": "run-s build:stencil build:backgroundjs postbuild",
+		"build": "run-s build:stencil postbuild",
 		"build:stencil": "stencil build",
-		"build:backgroundjs": "tsc-bundle tsconfig.backgroundjs.json --outFile ./www/chrome/background.js",
 		"postbuild": "run-s postbuild:add-version-to-manifest",
 		"start": "stencil build --dev --watch --serve",
 		"test": "stencil test --spec --e2e",
