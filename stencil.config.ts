@@ -9,11 +9,16 @@ export const config: Config = {
 	outputTargets: [
 		{
 			type: 'www',
-			// comment the following line to disable service workers in production
-			serviceWorker: null,
-			baseUrl: 'https://myapp.local/',
-			prerenderConfig: './stencil.prerender.config.ts',
 			copy: [{src: 'chrome'}],
+			// comment the following line to enable service workers in production
+			serviceWorker: null,
+			// baseUrl: 'https://myapp.local/',
+			// prerenderConfig: './stencil.prerender.config.ts',
+		},
+		{
+			type: 'dist-custom-elements-bundle',
+			empty: true,
+			dir: 'www/components',
 		},
 	],
 	// this disables all inlining by the stencil compiler
