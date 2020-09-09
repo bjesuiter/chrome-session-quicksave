@@ -5,8 +5,8 @@
 	"private": true,
 	"scripts": {
 		"build": "run-s build:stencil build:chrome postbuild:add-version-to-manifest",
-    "build:stencil": "stencil build",
-    "build:chrome": "tsc -p tsconfig.chrome.json",
+		"build:stencil": "stencil build",
+		"build:chrome": "tsc -p tsconfig.chrome.json",
 		"start": "stencil build --dev --watch --serve",
 		"test": "stencil test --spec --e2e",
 		"test.watch": "stencil test --spec --e2e --watchAll",
