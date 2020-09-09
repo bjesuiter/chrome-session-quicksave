@@ -4,9 +4,10 @@
 	"version": "0.2.0",
 	"private": true,
 	"scripts": {
-		"build": "run-s build:stencil build:chrome postbuild:add-version-to-manifest",
+		"build": "run-s build:stencil build:backgroundjs postbuild",
 		"build:stencil": "stencil build",
-		"build:chrome": "tsc -p tsconfig.chrome.json",
+		"build:backgroundjs": "tsc-bundle tsconfig.backgroundjs.json --outFile ./www/chrome/background.js",
+		"postbuild": "run-s postbuild:add-version-to-manifest",
 		"start": "stencil build --dev --watch --serve",
 		"test": "stencil test --spec --e2e",
 		"test.watch": "stencil test --spec --e2e --watchAll",
@@ -16,7 +17,8 @@
 	"dependencies": {
 		"@ionic/core": "^5.1.1",
 		"date-fns": "^2.14.0",
-		"ionicons": "^5.0.1"
+		"ionicons": "^5.0.1",
+		"typescript-bundle": "^1.0.16"
 	},
 	"devDependencies": {
 		"@stencil/core": "^1.14.0",
