@@ -5,7 +5,6 @@
     "src/chrome"
   ],
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "www"
+    "rootDir": "src"
   }
 }

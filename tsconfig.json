@@ -20,7 +20,8 @@
       "@lib/*": [
         "src/lib/*"
       ]
-    }
+    },
+    "outDir": "www"
   },
   "include": [
     "src"
