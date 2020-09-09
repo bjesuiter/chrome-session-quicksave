@@ -24,7 +24,7 @@
 		},
 		"default_title": "Session Quicksave"
 	},
-	"options_page": "/chrome/options-page/index.html",
+	"options_page": "index.html",
 	"web_accessible_resources": [
 		"assets/icons/*.png",
 		"assets/img/*.png",
