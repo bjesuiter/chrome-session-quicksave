@@ -4,7 +4,7 @@
 	"version": "0.2.0",
 	"private": true,
 	"scripts": {
-		"build": "run-s build:stencil postbuild",
+		"build": "run-s build:stencil",
 		"build:stencil": "stencil build",
 		"postbuild": "run-s postbuild:add-version-to-manifest",
 		"start": "stencil build --dev --watch --serve",
