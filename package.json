@@ -25,6 +25,7 @@
 		"@types/chrome": "0.0.114",
 		"@types/jest": "^26.0.15",
 		"esm": "^3.2.25",
+		"jest": "^26.6.3",
 		"load-json-file": "^6.2.0",
 		"npm-run-all": "^4.1.5",
 		"tslib": "^2.0.0",
