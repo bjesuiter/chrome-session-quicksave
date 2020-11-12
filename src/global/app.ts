@@ -1,5 +1,6 @@
-import {showError} from '@lib/chrome-services/notification-service';
-import {quicksaveSession} from '@lib/main/quicksave-session';
+import { showError } from '@lib/chrome-services/notification-service';
+import { initializeOptions } from '@lib/main/initialize-options';
+import { quicksaveSession } from '@lib/main/quicksave-session';
 
 export default async () => {
 	/**
@@ -12,22 +13,22 @@ export default async () => {
 	 */
 
 	// Code to run when extension gets installed
-	chrome.runtime.onInstalled.addListener(function () {
-		// Add code to run after install
-		//
-		// Demo Code:
-		// chrome.storage.sync.set({color: '#3aa757'}, function() {
-		//   console.log("The color is green.");
-		// });
-
-		alert('Extension Installed!');
+	chrome.runtime.onInstalled.addListener(async function () {
+		try {
+			await initializeOptions();
+			alert('Extension Installed Successfully!');
+		} catch (error) {
+			const errorMessage = `Error while creating Extension Options Storage! Please contact the developer about it!`;
+			showError('Installation Error', errorMessage);
+			console.error(errorMessage, error);
+		}
 	});
 
 	chrome.browserAction.onClicked.addListener(
 		/**
 		 * @param currentTab see https://developer.chrome.com/extensions/tabs#type-Tab
 		 */
-		async currentTab => {
+		async (currentTab) => {
 			try {
 				await quicksaveSession(currentTab);
 			} catch (error) {
