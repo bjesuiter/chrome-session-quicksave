@@ -19,6 +19,9 @@
     "paths": {
       "@lib/*": [
         "src/lib/*"
+      ],
+      "@models/*": [
+        "src/models/*"
       ]
     },
     "outDir": "www"
