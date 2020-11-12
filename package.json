@@ -14,9 +14,11 @@
 		"postbuild:add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js"
 	},
 	"dependencies": {
+		"@bjesuiter/serializr-helpers": "^2.2.1",
 		"@ionic/core": "^5.1.1",
 		"date-fns": "^2.14.0",
 		"ionicons": "^5.0.1",
+		"serializr": "^2.0.3",
 		"typescript-bundle": "^1.0.16"
 	},
 	"devDependencies": {
