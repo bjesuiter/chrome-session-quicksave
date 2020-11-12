@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@bjesuiter/serializr-helpers": "^2.2.1",
+		"@datorama/akita": "^5.2.5",
 		"@ionic/core": "^5.1.1",
 		"date-fns": "^2.14.0",
 		"ionicons": "^5.0.1",
