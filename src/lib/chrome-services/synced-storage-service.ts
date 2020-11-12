@@ -1,5 +1,5 @@
-import {deserialize, serialize} from 'serializr';
-import {SessionQuicksaveOptions, SessionQuicksaveOptionsModel} from 'src/models/session-quicksave-options';
+import { deserialize, serialize } from 'serializr';
+import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
 
 export function saveOptions(options: SessionQuicksaveOptions): Promise<void> {
 	return new Promise((resolve, reject) => {
@@ -16,11 +16,11 @@ export function saveOptions(options: SessionQuicksaveOptions): Promise<void> {
 
 export function readOptions(): Promise<SessionQuicksaveOptions> {
 	return new Promise((resolve, reject) => {
-		chrome.storage.sync.get(items => {
+		chrome.storage.sync.get((items) => {
 			if (chrome.runtime.lastError) {
 				reject(chrome.runtime.lastError);
 			} else {
-				const decodedOptions = deserialize(SessionQuicksaveOptionsModel, items);
+				const decodedOptions = deserialize(SessionQuicksaveOptions, items);
 				resolve(decodedOptions);
 			}
 		});
