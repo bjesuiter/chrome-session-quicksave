@@ -61,8 +61,9 @@ Icon Pack:
 
 ## Changelog
 
-### Next
+### 0.3.0 (Beta) - 2020-11-13 - added basic options page & Session Folder initialization after install
 
+- use StencilJS as robust base for background script, toolbar icon click handler & options page
 - compile extension from typescript (which improves stability a lot!)
 
 ### 0.2.0 (Beta) - 2020-04-18 - initial release improved
