@@ -22,7 +22,9 @@ export async function initializeOptions() {
 		if (!!options) {
 			console.log('Found options already: ', serialize(options));
 		}
+		console.log('Validating options.sessionsFolderId...');
 		if (isSessionFolderIdValid(options.sessionsFolderId)) {
+			console.log('Session Folder Id is valid.');
 			return;
 		}
 	} catch (error) {
