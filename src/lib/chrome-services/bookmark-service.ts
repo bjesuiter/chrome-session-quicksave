@@ -29,7 +29,7 @@ export function getBookmarkNodes(
  */
 export async function getBookmarkNode(
 	bookmarkId: string
-): Promise<chrome.bookmarks.BookmarkTreeNode> {
+): Promise<chrome.bookmarks.BookmarkTreeNode | undefined> {
 	const [node] = await getBookmarkNodes(bookmarkId);
 	return node;
 }
