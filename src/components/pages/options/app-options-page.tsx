@@ -1,7 +1,7 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 import '@ionic/core';
 import 'ionicons';
-import { SessionQuicksaveOptions } from 'src/models/session-quicksave-options';
+import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
 import { readOptions, saveOptions } from '@lib/chrome-services/synced-storage-service';
 import { toastController } from '@ionic/core';
 
@@ -13,7 +13,6 @@ import { toastController } from '@ionic/core';
 export class AppOptionsPage {
 	initialOptions: SessionQuicksaveOptions;
 
-	@State()
 	sessionsFolderId = '';
 
 	async componentWillLoad() {
@@ -24,7 +23,6 @@ export class AppOptionsPage {
 	async saveOptions() {
 		const newOptions = new SessionQuicksaveOptions();
 		newOptions.sessionsFolderId = this.sessionsFolderId;
-
 		try {
 			await saveOptions(newOptions);
 			const toast = await toastController.create({
@@ -41,6 +39,11 @@ export class AppOptionsPage {
 		}
 	}
 
+	updateSessionsFolderId(ionEvent) {
+		this.sessionsFolderId = ionEvent.detail.value;
+		console.debug('updateSessionsFolderId called with ', this.sessionsFolderId);
+	}
+
 	render() {
 		// TODO: Include an indicator, whether all changes are saved or not
 		return (
@@ -55,7 +58,7 @@ export class AppOptionsPage {
 							<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
 							<ion-input
 								value={this.sessionsFolderId}
-								onIonChange={(event) => (this.sessionsFolderId = event.detail.value)}
+								onIonChange={(event) => this.updateSessionsFolderId(event)}
 							></ion-input>
 						</ion-item>
 					</ion-content>
@@ -63,7 +66,7 @@ export class AppOptionsPage {
 
 				<ion-toolbar>
 					<ion-buttons slot="end">
-						<ion-button onClick={this.saveOptions}>Save options</ion-button>
+						<ion-button onClick={() => this.saveOptions()}>Save options</ion-button>
 					</ion-buttons>
 				</ion-toolbar>
 			</ion-card>
