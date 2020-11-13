@@ -26,3 +26,14 @@ export function readOptions(): Promise<SessionQuicksaveOptions> {
 		});
 	});
 }
+
+export async function readOptionSessionsFolderId(): Promise<string | undefined> {
+	try {
+		const options = await readOptions();
+		if (!!options.sessionsFolderId) {
+			return options.sessionsFolderId;
+		}
+	} catch (error) {
+		console.error('Error while reading options: ', error);
+	}
+}

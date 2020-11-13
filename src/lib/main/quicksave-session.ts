@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
 import { getTabsInWindow } from '@lib/chrome-services/tabs-service';
 import { showSimpleNotification } from '@lib/chrome-services/notification-service';
-import { readSessionsFolderId } from '@lib/chrome-services/synced-storage-service';
+import { readOptionSessionsFolderId } from '@lib/chrome-services/synced-storage-service';
 import { saveSession } from '@lib/chrome-services/bookmark-service';
 
 /**
@@ -23,7 +23,7 @@ export async function quicksaveSession(currentTab: chrome.tabs.Tab): Promise<voi
 
 	// this uses the first result, may break easily!
 	// replace with target folder selection via plugin later
-	const sessionFolderId = await readSessionsFolderId();
+	const sessionFolderId = await readOptionSessionsFolderId();
 	const tabs: chrome.tabs.Tab[] = await getTabsInWindow(currentWindowId);
 	await saveSession(sessionFolderId, sessionName, tabs);
 
