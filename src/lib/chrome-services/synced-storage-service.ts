@@ -4,13 +4,14 @@ import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
 export function saveOptions(options: SessionQuicksaveOptions): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const jsonObject = serialize(options);
+		console.debug('Saving new options... : ', jsonObject);
 		chrome.storage.sync.set(jsonObject, () => {
 			const error = chrome.runtime.lastError;
-			if (error) {
-				console.debug('Error saving options: ', [jsonObject, error]);
+			if (!!error) {
+				console.debug('Error saving options: ', error);
 				reject(error);
 			} else {
-				console.debug('New options saved successfully ', jsonObject);
+				console.debug('New options saved successfully');
 				resolve();
 			}
 		});
