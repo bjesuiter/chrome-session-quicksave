@@ -13,15 +13,15 @@ The following plugin is used: <https://www.npmjs.com/package/rollup-plugin-chrom
 
 Rollup will generate the following fields in manifest.json:
 
--   manifest_version
--   version (will be copied from package.json)
--   name
--   description
+- manifest_version
+- version (will be copied from package.json)
+- name
+- description
 
 ## Specialities about this repo
 
--   uses Pikapkg ESM Build of React (real react esm build should come around react version 17 or so),  
-    see: https://github.com/pikapkg/react
+- uses Pikapkg ESM Build of React (real react esm build should come around react version 17 or so),  
+  see: https://github.com/pikapkg/react
 
 ## Icon Attributions
 
@@ -41,27 +41,21 @@ Icon Pack:
 
 ## Next Steps / Improvements for 1.0.0
 
-**Priority**: Switch to StencilJS foundation for waaay easier option page development with components.
-See <https://github.com/bjesuiter/stencil-js-chrome-extension>.
-
--   add an options page for extension configuration, allow config of
-    -   'Sessions folder' - the default location where to save new sessions
-    -   Default Behavior when session folder does already exist (overwrite, create new, ask)
--   switch to typescript: https://www.npmjs.com/package/@rollup/plugin-typescript
--   contribute to / fork https://github.com/mentaljam/rollup-plugin-copy2
-    to remove deprecated rollup functionality from it
+- add an options page for extension configuration, allow config of
+  - Default Behavior when one specific session folder does already exist (overwrite, create new, ask)
+- Add a component for visual selection of a parent bookmark folder for storing the session folders
 
 ## Ideas after 1.0.0
 
--   add a notification which allows jumping to the new session in the bookmark manager
--   allow configuration of the pattern for default 'New Session' names.
--   add more languages (default language is english)
--   add notification when extension was updated, with link to changelog
+- add a notification which allows jumping to the new session in the bookmark manager
+- allow configuration of the pattern for default 'New Session' names.
+- add more languages (default language is english)
+- add notification when extension was updated, with link to changelog
 
 ## Unspecified Todos
 
--   improve error html pages
--   Add website for extension
+- improve error html pages
+- Add website for extension
 
 ---
 
@@ -69,14 +63,14 @@ See <https://github.com/bjesuiter/stencil-js-chrome-extension>.
 
 ### Next
 
--   compile extension from typescript (which improves stability a lot!)
+- compile extension from typescript (which improves stability a lot!)
 
 ### 0.2.0 (Beta) - 2020-04-18 - initial release improved
 
--   added more icons
--   improved readme and changelog
--   improved code comment quality
+- added more icons
+- improved readme and changelog
+- improved code comment quality
 
 ### 0.1.0 (Beta) - 2020-04-18 - initial release
 
--   can save the urls from all tabs in the current window to a new folder under a folder called 'Sessions' somewhere in chrome bookmarks
+- can save the urls from all tabs in the current window to a new folder under a folder called 'Sessions' somewhere in chrome bookmarks
