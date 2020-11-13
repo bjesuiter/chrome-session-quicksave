@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
 import '@ionic/core';
 import 'ionicons';
 import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
@@ -13,16 +13,34 @@ import { toastController } from '@ionic/core';
 export class AppOptionsPage {
 	initialOptions: SessionQuicksaveOptions;
 
-	sessionsFolderId = '';
+	@State()
+	formControls = {
+		sessionsFolderId: null,
+	};
+
+	changeFormValue(controlName, value) {
+		this.formControls = {
+			...this.formControls,
+			[controlName]: value,
+		};
+
+		console.debug(`ChangeFormValue called for '${controlName}' with new value '${value}'`);
+	}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		console.debug('Form Submission with Data: ', this.formControls);
+		this.saveOptions();
+	}
 
 	async componentWillLoad() {
 		this.initialOptions = await readOptions();
-		this.sessionsFolderId = this.initialOptions.sessionsFolderId;
+		this.changeFormValue('sessionsFolderId', this.initialOptions.sessionsFolderId);
 	}
 
 	async saveOptions() {
 		const newOptions = new SessionQuicksaveOptions();
-		newOptions.sessionsFolderId = this.sessionsFolderId;
+		newOptions.sessionsFolderId = this.formControls.sessionsFolderId;
 		try {
 			await saveOptions(newOptions);
 			const toast = await toastController.create({
@@ -39,11 +57,6 @@ export class AppOptionsPage {
 		}
 	}
 
-	updateSessionsFolderId(ionEvent) {
-		this.sessionsFolderId = ionEvent.detail.value;
-		console.debug('updateSessionsFolderId called with ', this.sessionsFolderId);
-	}
-
 	render() {
 		// TODO: Include an indicator, whether all changes are saved or not
 		return (
@@ -54,19 +67,25 @@ export class AppOptionsPage {
 
 				<ion-card-body>
 					<ion-content class="content">
-						<ion-item>
-							<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
-							<ion-input
-								value={this.sessionsFolderId}
-								onIonChange={(event) => this.updateSessionsFolderId(event)}
-							></ion-input>
-						</ion-item>
+						<form onSubmit={(e) => this.handleSubmit(e)} novalidate>
+							<ion-list lines="none">
+								<ion-item>
+									<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
+									<ion-input
+										type="number"
+										required
+										value={this.formControls.sessionsFolderId}
+										onInput={(ev: any) => this.changeFormValue('sessionsFolderId', ev.target.value)}
+									></ion-input>
+								</ion-item>
+							</ion-list>
+						</form>
 					</ion-content>
 				</ion-card-body>
 
 				<ion-toolbar>
 					<ion-buttons slot="end">
-						<ion-button onClick={() => this.saveOptions()}>Save options</ion-button>
+						<ion-button type="submit">Save options</ion-button>
 					</ion-buttons>
 				</ion-toolbar>
 			</ion-card>
