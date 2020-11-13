@@ -3,6 +3,7 @@ import '@ionic/core';
 import 'ionicons';
 import { SessionQuicksaveOptions } from 'src/models/session-quicksave-options';
 import { readOptions, saveOptions } from '@lib/chrome-services/synced-storage-service';
+import { toastController } from '@ionic/core';
 
 @Component({
 	tag: 'app-options-page',
@@ -20,26 +21,52 @@ export class AppOptionsPage {
 		this.sessionsFolderId = this.initialOptions.sessionsFolderId;
 	}
 
-	saveOptions() {
+	async saveOptions() {
 		const newOptions = new SessionQuicksaveOptions();
 		newOptions.sessionsFolderId = this.sessionsFolderId;
 
-		return saveOptions(newOptions);
+		try {
+			await saveOptions(newOptions);
+			const toast = await toastController.create({
+				message: 'Options saved successfully!',
+				duration: 2500,
+			});
+			toast.present();
+		} catch (error) {
+			const toast = await toastController.create({
+				message: 'Error while saving Options!',
+				duration: 2500,
+			});
+			toast.present();
+		}
 	}
 
 	render() {
+		// TODO: Include an indicator, whether all changes are saved or not
 		return (
-			<div class="app-home">
-				<ion-item>
-					<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
-					<ion-input
-						value={this.sessionsFolderId}
-						onIonChange={(event) => (this.sessionsFolderId = event.detail.value)}
-					></ion-input>
-				</ion-item>
+			<ion-card class="frame">
+				<ion-card-header>
+					<h1>Session Quicksave Extension Options</h1>
+				</ion-card-header>
 
-				<ion-button onClick={this.saveOptions}>Save options</ion-button>
-			</div>
+				<ion-card-body>
+					<ion-content class="content">
+						<ion-item>
+							<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
+							<ion-input
+								value={this.sessionsFolderId}
+								onIonChange={(event) => (this.sessionsFolderId = event.detail.value)}
+							></ion-input>
+						</ion-item>
+					</ion-content>
+				</ion-card-body>
+
+				<ion-toolbar>
+					<ion-buttons slot="end">
+						<ion-button onClick={this.saveOptions}>Save options</ion-button>
+					</ion-buttons>
+				</ion-toolbar>
+			</ion-card>
 		);
 	}
 }

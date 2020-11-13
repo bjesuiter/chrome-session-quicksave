@@ -5,9 +5,12 @@ export function saveOptions(options: SessionQuicksaveOptions): Promise<void> {
 	return new Promise((resolve, reject) => {
 		const jsonObject = serialize(options);
 		chrome.storage.sync.set(jsonObject, () => {
-			if (chrome.runtime.lastError) {
-				reject(chrome.runtime.lastError);
+			const error = chrome.runtime.lastError;
+			if (error) {
+				console.debug('Error saving options: ', [jsonObject, error]);
+				reject(error);
 			} else {
+				console.debug('New options saved successfully ', jsonObject);
 				resolve();
 			}
 		});
