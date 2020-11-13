@@ -18,6 +18,11 @@ export class AppOptionsPage {
 		sessionsFolderId: null,
 	};
 
+	async componentWillLoad() {
+		this.initialOptions = await readOptions();
+		this.changeFormValue('sessionsFolderId', this.initialOptions.sessionsFolderId);
+	}
+
 	changeFormValue(controlName, value) {
 		this.formControls = {
 			...this.formControls,
@@ -31,11 +36,6 @@ export class AppOptionsPage {
 		event.preventDefault();
 		console.debug('Form Submission with Data: ', this.formControls);
 		this.saveOptions();
-	}
-
-	async componentWillLoad() {
-		this.initialOptions = await readOptions();
-		this.changeFormValue('sessionsFolderId', this.initialOptions.sessionsFolderId);
 	}
 
 	async saveOptions() {
@@ -65,12 +65,12 @@ export class AppOptionsPage {
 					<h1>Session Quicksave Extension Options</h1>
 				</ion-card-header>
 
-				<ion-card-body>
-					<ion-content class="content">
-						<form onSubmit={(e) => this.handleSubmit(e)} novalidate>
-							<ion-list lines="none">
+				<form onSubmit={(e) => this.handleSubmit(e)}>
+					<ion-card-body>
+						<ion-content class="content">
+							<ion-list>
 								<ion-item>
-									<ion-label position="floating">Bookmark Folder for saving Sessions</ion-label>
+									<ion-label position="stacked">Bookmark Folder for saving Sessions</ion-label>
 									<ion-input
 										type="number"
 										required
@@ -79,15 +79,15 @@ export class AppOptionsPage {
 									></ion-input>
 								</ion-item>
 							</ion-list>
-						</form>
-					</ion-content>
-				</ion-card-body>
+						</ion-content>
+					</ion-card-body>
 
-				<ion-toolbar>
-					<ion-buttons slot="end">
-						<ion-button type="submit">Save options</ion-button>
-					</ion-buttons>
-				</ion-toolbar>
+					<ion-toolbar>
+						<ion-buttons slot="end">
+							<ion-button type="submit">Save options</ion-button>
+						</ion-buttons>
+					</ion-toolbar>
+				</form>
 			</ion-card>
 		);
 	}
