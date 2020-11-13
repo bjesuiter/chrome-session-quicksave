@@ -11,7 +11,9 @@
 		"test": "stencil test --spec --e2e",
 		"test.watch": "stencil test --spec --e2e --watchAll",
 		"generate": "stencil generate",
-		"postbuild:add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js"
+		"postbuild:add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js",
+		"zip:www": "bestzip deploy.zip www/*",
+		"generate-publish-zip": "run-s build:stencil zip:www"
 	},
 	"dependencies": {
 		"@bjesuiter/serializr-helpers": "^2.2.1",
@@ -27,6 +29,7 @@
 		"@stencil/router": "^1.0.1",
 		"@types/chrome": "0.0.114",
 		"@types/jest": "^26.0.15",
+		"bestzip": "^2.1.7",
 		"esm": "^3.2.25",
 		"jest": "^26.6.3",
 		"load-json-file": "^6.2.0",
