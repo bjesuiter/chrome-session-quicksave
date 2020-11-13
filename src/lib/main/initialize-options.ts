@@ -1,6 +1,7 @@
 import {
 	bookmarkFolderExists,
 	getBookmarkFolderByName,
+	getBookmarkNode,
 } from '@lib/chrome-services/bookmark-service';
 import { readOptions, saveOptions } from '@lib/chrome-services/synced-storage-service';
 import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
@@ -19,22 +20,22 @@ export async function initializeOptions() {
 	try {
 		const options = await readOptions();
 		if (!!options) {
-			console.log('Found options already - not doing anything: ', serialize(options));
+			console.log('Found options already: ', serialize(options));
+		}
+		if (isSessionFolderIdValid(options.sessionsFolderId)) {
+			return;
 		}
 	} catch (error) {
 		console.error('Chrome reading error while reading options: ', error);
 	}
 
-	console.log('Found no valid options, initializing new ones...');
+	// Path for no or invalid options found
+	console.log('Found no or invalid options, initializing new ones...');
 	console.log(
 		`Make sure that a Folder 'Sessions' exists in bookmark tree id 1 (which is likely the folder for BookmarkBar) ...`
 	);
 
-	await ensureDefaultSessionFolderAvailability();
-	const sessionFolderNode = await getBookmarkFolderByName(
-		BOOKMARK_BAR_FOLDER_ID,
-		DEFAULT_SESSIONS_FOLDER_NAME
-	);
+	const sessionFolderNode = await ensureDefaultSessionFolderAvailability();
 
 	if (!sessionFolderNode) {
 		throw new Error(`Critical Error: Creation of default sessions folder failed!`);
@@ -44,10 +45,22 @@ export async function initializeOptions() {
 	console.log(`Creating new Options object...`);
 	const options = new SessionQuicksaveOptions(sessionFolderNode.id);
 
-	return saveOptions(options);
+	try {
+		const optionsSaved = await saveOptions(options);
+		console.log('New Options successfully saved!', optionsSaved);
+		console.log('New options:', options);
+	} catch (error) {
+		error.message = `[initializeOptions]: Critical Error while saving options:  ${error.message}`;
+		throw error;
+	}
 }
 
-async function ensureDefaultSessionFolderAvailability() {
+/**
+ * @returns Session Folder Node
+ */
+async function ensureDefaultSessionFolderAvailability(): Promise<
+	chrome.bookmarks.BookmarkTreeNode
+> {
 	const folderAvailable = await bookmarkFolderExists(
 		BOOKMARK_BAR_FOLDER_ID,
 		DEFAULT_SESSIONS_FOLDER_NAME
@@ -55,4 +68,17 @@ async function ensureDefaultSessionFolderAvailability() {
 	if (!folderAvailable) {
 		await createBookmarkFolder(BOOKMARK_BAR_FOLDER_ID, DEFAULT_SESSIONS_FOLDER_NAME);
 	}
+	const defaultSessionFolderNode = await getBookmarkFolderByName(
+		BOOKMARK_BAR_FOLDER_ID,
+		DEFAULT_SESSIONS_FOLDER_NAME
+	);
+	console.log('Default sessions folder already available: ', defaultSessionFolderNode);
+
+	return defaultSessionFolderNode;
+}
+
+async function isSessionFolderIdValid(sessionFolderId) {
+	if (!sessionFolderId) return false;
+	const sessionsFolderNode = await getBookmarkNode(sessionFolderId);
+	return !!sessionsFolderNode;
 }
