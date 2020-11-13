@@ -1,13 +1,13 @@
-import { serializable } from 'serializr';
+import { primitive, serializable } from 'serializr';
 
-export interface SessionQuicksaveOptions {
+export class SessionQuicksaveOptions {
 	/**
 	 * The chrome internal ID of the Sessions Folder
 	 */
-	sessionsFolderId: string;
-}
+	@serializable(primitive())
+	sessionsFolderId?: string;
 
-export class SessionQuicksaveOptionsModel implements SessionQuicksaveOptions {
-	@serializable
-	sessionsFolderId: string;
+	constructor(sessionFolderId?: string) {
+		this.sessionsFolderId = sessionFolderId;
+	}
 }
