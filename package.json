@@ -1,7 +1,7 @@
 {
 	"name": "chrome-session-quicksave",
 	"description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"private": true,
 	"scripts": {
 		"build": "run-s build:stencil",
