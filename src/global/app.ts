@@ -16,7 +16,7 @@ export default async () => {
 	chrome.runtime.onInstalled.addListener(async function () {
 		try {
 			await initializeOptions();
-			alert('Extension Installed Successfully!');
+			console.log('Extension Installed Successfully!');
 		} catch (error) {
 			const errorMessage = `Error while creating Extension Options Storage! Please contact the developer about it!`;
 			showError('Installation Error', errorMessage);
