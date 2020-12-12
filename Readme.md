@@ -24,9 +24,16 @@ Icon Pack:
 
 ## Next Steps / Improvements for 1.0.0
 
+### General
+
 - add an options page for extension configuration, allow config of
   - Default Behavior when one specific session folder does already exist (overwrite, create new, ask)
 - Add a component for visual selection of a parent bookmark folder for storing the session folders
+
+### Migrating to Chrome Manifest V3
+
+- [Migration Guide](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#action-api-unification)
+- [Migration Checklist](https://developer.chrome.com/docs/extensions/mv3/mv3-migration-checklist/)
 
 ## Ideas after 1.0.0
 
