@@ -6,23 +6,6 @@ A Chrome extension for quickly saving all open tabs inside a window into the bro
 
 see https://developer.chrome.com/webstore/publish
 
-## Rollup Setup
-
-This extension will be packaged with rollup.  
-The following plugin is used: <https://www.npmjs.com/package/rollup-plugin-chrome-extension>
-
-Rollup will generate the following fields in manifest.json:
-
-- manifest_version
-- version (will be copied from package.json)
-- name
-- description
-
-## Specialities about this repo
-
-- uses Pikapkg ESM Build of React (real react esm build should come around react version 17 or so),  
-  see: https://github.com/pikapkg/react
-
 ## Icon Attributions
 
 This project uses Icons from this icon pack:  
