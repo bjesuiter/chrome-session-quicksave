@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "www"
+  },
+  "include": [
+    "src/background.worker.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
