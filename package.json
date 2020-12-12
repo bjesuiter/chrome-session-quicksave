@@ -28,8 +28,8 @@
 	"devDependencies": {
 		"@stencil/core": "^1.14.0",
 		"@stencil/router": "^1.0.1",
-		"@types/chrome": "0.0.114",
-		"@types/jest": "^26.0.15",
+		"@types/chrome": "0.0.127",
+		"@types/jest": "^26.0.19",
 		"bestzip": "^2.1.7",
 		"del-cli": "^3.0.1",
 		"esm": "^3.2.25",
