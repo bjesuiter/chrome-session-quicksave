@@ -5,8 +5,9 @@
 	"private": true,
 	"scripts": {
 		"prebuild": "del-cli ./www/*",
-		"build": "run-s build:stencil",
+		"build": "run-s build:stencil build:sw",
 		"build:stencil": "stencil build",
+		"build:sw": "tsc --project tsconfig.sw.json && tscpaths -p tsconfig.sw.json -s ./src -o ./www",
 		"postbuild": "run-s postbuild:add-version-to-manifest",
 		"start": "stencil build --dev --watch --serve",
 		"test": "stencil test --spec --e2e",
@@ -37,6 +38,7 @@
 		"load-json-file": "^6.2.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.1.2",
+		"tscpaths": "0.0.9",
 		"tslib": "^2.0.0",
 		"typescript": "^3.9.5",
 		"workbox-build": "4.3.1",
