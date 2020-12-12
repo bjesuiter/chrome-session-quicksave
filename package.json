@@ -4,6 +4,7 @@
 	"version": "0.3.0",
 	"private": true,
 	"scripts": {
+		"prebuild": "del-cli ./www/*",
 		"build": "run-s build:stencil",
 		"build:stencil": "stencil build",
 		"postbuild": "run-s postbuild:add-version-to-manifest",
@@ -30,6 +31,7 @@
 		"@types/chrome": "0.0.114",
 		"@types/jest": "^26.0.15",
 		"bestzip": "^2.1.7",
+		"del-cli": "^3.0.1",
 		"esm": "^3.2.25",
 		"jest": "^26.6.3",
 		"load-json-file": "^6.2.0",
