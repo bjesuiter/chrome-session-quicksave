@@ -4,14 +4,14 @@
 	"description": "A Chrome extension for quickly saving all open tabs inside a window into the browser bookmarks (with some configurability)",
 	"manifest_version": 2,
 	"icons": {
-		"16": "/assets/img/icon-16.png",
-		"32": "/assets/img/icon-32.png",
-		"48": "/assets/img/icon-48.png",
-		"56": "/assets/img/icon-56.png",
-		"64": "/assets/img/icon-64.png",
-		"128": "/assets/img/icon-128.png",
-		"256": "/assets/img/icon-256.png",
-		"512": "/assets/img/icon-512.png"
+		"16": "assets/img/icon-16.png",
+		"32": "assets/img/icon-32.png",
+		"48": "assets/img/icon-48.png",
+		"56": "assets/img/icon-56.png",
+		"64": "assets/img/icon-64.png",
+		"128": "assets/img/icon-128.png",
+		"256": "assets/img/icon-256.png",
+		"512": "assets/img/icon-512.png"
 	},
 	"background": {
 		"page": "background.html"
