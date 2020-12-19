@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { appStyles } from './app.styles';
-import MuiAlert from '@material-ui/lab/Alert';
 import { Button, Card, CardActions, CardContent, Divider, Typography } from '@material-ui/core';
 import { OptionsForm } from '../options-form/options-form';
-
-function Alert(props: any) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 export default function App() {
 	// let initialOptions: SessionQuicksaveOptions;
@@ -21,36 +16,6 @@ export default function App() {
 		severity: 'success',
 		message: '',
 	});
-
-	// function changeFormValue(controlName: string, value: any) {
-	// 	setFormControls({ ...formControls, [controlName]: value });
-	// 	console.debug(`ChangeFormValue called for '${controlName}' with new value '${value}'`);
-	// }
-
-	// async function saveOptions() {
-	// 	const newOptions = new SessionQuicksaveOptions();
-	// 	newOptions.sessionsFolderId = formControls.sessionsFolderId || undefined;
-	// 	try {
-	// 		await saveSyncOptions(newOptions);
-	// 		setToastData({
-	// 			open: true,
-	// 			severity: 'success',
-	// 			message: 'Options saved successfully!',
-	// 		});
-	// 	} catch (error) {
-	// 		setToastData({
-	// 			open: true,
-	// 			severity: 'error',
-	// 			message: 'Error while saving Options!',
-	// 		});
-	// 	}
-	// }
-
-	// function handleSubmit<T>(event: any) {
-	// 	event.preventDefault();
-	// 	console.debug('Form Submission with Data: ', formControls);
-	// 	saveOptions();
-	// }
 
 	// readSyncOptions().then((options) => {
 	// 	initialOptions = options;
