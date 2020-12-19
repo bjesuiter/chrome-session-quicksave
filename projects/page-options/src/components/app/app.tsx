@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { appStyles } from './app.styles';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Button, Card, CardActions, CardContent, Divider, Typography } from '@material-ui/core';
+import { OptionsForm } from '../options-form/options-form';
 
 function Alert(props: any) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -82,7 +83,9 @@ export default function App() {
 				</Typography>
 				<Divider component="hr" />
 			</header>
-			<CardContent></CardContent>
+			<CardContent className={classes.content}>
+				<OptionsForm />
+			</CardContent>
 			<CardActions className={classes.actions}>
 				<Button>Save Settings</Button>
 			</CardActions>
