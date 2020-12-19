@@ -1,7 +1,7 @@
 # Using Yaml to be able to use comments :)
 # Source Gist: https://gist.github.com/bjesuiter/97e2cc820804003090d51e9656151062
 trailingComma: "es5"
-printWidth: 80
+printWidth: 120
 tabWidth: 2
 useTabs: true
 singleQuote: true
