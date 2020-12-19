@@ -23,6 +23,7 @@ module.exports = {
 	proxy: {},
 	alias: {
 		'@lib': './projects/lib',
-		'@options-page': './projects/options-page/src',
+		'@page-options': './projects/page-options/src',
+		'@page-background': './projects/page-background/src',
 	},
 };

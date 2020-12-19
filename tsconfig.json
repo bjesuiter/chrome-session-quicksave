@@ -2,8 +2,7 @@
 {
   "include": [
     "types",
-    "projects/options-page/src",
-    "projects/background-script",
+    "projects",
   ],
   "compilerOptions": {
     "module": "esnext",
@@ -16,8 +15,11 @@
       "@lib/*": [
         "projects/lib/*"
       ],
-      "@options-page/*": [
-        "projects/options-page/src/*"
+      "@page-options/*": [
+        "projects/page-options/src/*"
+      ],
+      "@page-background/*": [
+        "projects/page-background/src/*"
       ]
     },
     /* noEmit - Snowpack builds (emits) files, not tsc. */
