@@ -7,7 +7,7 @@
 		"start": "snowpack dev",
 		"build": "snowpack build",
 		"build:clean": "snowpack build --clean",
-		"build:watch": "chokidar \"projects/*\"  \"webroot/*\" -c \"npm run build\"",
+		"build:watch": "chokidar \"projects/**/*\"  \"webroot/**/*\" -c \"npm run build\"",
 		"postbuild": "run-s add-version-to-manifest",
 		"generate-dist-zip": "run-s build:clean zip:dist",
 		"add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js",
