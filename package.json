@@ -4,16 +4,13 @@
 	"version": "0.3.0",
 	"private": true,
 	"scripts": {
-		"build": "run-s build:stencil",
-		"build:stencil": "stencil build",
-		"postbuild": "run-s postbuild:add-version-to-manifest",
-		"start": "stencil build --dev --watch --serve",
-		"test": "stencil test --spec --e2e",
-		"test.watch": "stencil test --spec --e2e --watchAll",
-		"generate": "stencil generate",
-		"postbuild:add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js",
-		"zip:www": "bestzip deploy.zip www/*",
-		"generate-publish-zip": "run-s build:stencil zip:www"
+		"start": "snowpack dev",
+		"build": "snowpack build",
+		"build:clean": "snowpack build --clean",
+		"postbuild": "run-s add-version-to-manifest",
+		"generate-dist-zip": "run-s build:clean zip:dist",
+		"add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js",
+		"zip:dist": "bestzip deploy.zip dist/*"
 	},
 	"dependencies": {
 		"@bjesuiter/serializr-helpers": "^2.2.1",
