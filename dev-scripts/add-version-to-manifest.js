@@ -1,7 +1,7 @@
 import loadJson from 'load-json-file';
 import saveJson from 'write-json-file';
 
-const manifestPath = 'www/manifest.json';
+const manifestPath = 'dist/manifest.json';
 
 (async () => {
 	try {
