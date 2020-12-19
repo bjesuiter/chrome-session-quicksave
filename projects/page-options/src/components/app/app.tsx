@@ -1,47 +1,89 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { appStyles } from './app.styles';
-import { Button, Card, CardActions, CardContent, Divider, Typography } from '@material-ui/core';
+import {
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	Divider,
+	Snackbar,
+	SnackbarCloseReason,
+	Typography,
+} from '@material-ui/core';
 import { OptionsForm } from '../options-form/options-form';
+import type { OptionPageFormControls } from '../options-form/option-page-form-controls.interface';
+import { saveOptionsForm } from '../options-form/save-options-form.function';
+import { Alert } from '@lib/shared/alert';
 
 export default function App() {
-	// let initialOptions: SessionQuicksaveOptions;
 	const classes = appStyles();
 
-	const [formControls, setFormControls] = useState({
-		sessionsFolderId: '',
-	});
+	/**
+	 * Form Data Handling
+	 */
+	let formControls: OptionPageFormControls;
 
+	function onFormChange(newFormControls: OptionPageFormControls) {
+		console.log('New Form Control State: ', newFormControls);
+		formControls = newFormControls;
+	}
+
+	async function onFormSubmit() {
+		console.debug('Form Submission with Data: ', formControls);
+		const result = await saveOptionsForm(formControls);
+		if (result) {
+			setToastData({
+				open: true,
+				severity: 'success',
+				message: 'Options saved successfully!',
+			});
+		} else {
+			setToastData({
+				open: true,
+				severity: 'error',
+				message: 'Error while saving Options!',
+			});
+		}
+	}
+
+	function onFormError(err: any) {
+		console.error(err);
+		setToastData({
+			open: true,
+			severity: 'error',
+			message: 'Error while loading Options!',
+		});
+	}
+
+	/**
+	 * Toast State & Handling
+	 */
 	const [toastData, setToastData] = useState({
 		open: false,
 		severity: 'success',
 		message: '',
 	});
 
-	// readSyncOptions().then((options) => {
-	// 	initialOptions = options;
-	// 	changeFormValue('sessionsFolderId', initialOptions.sessionsFolderId);
-	// });
+	function handleToastClose(event: SyntheticEvent<any, Event>, reason: SnackbarCloseReason) {
+		if (reason === 'clickaway') {
+			return;
+		}
+		setToastData({ ...toastData, open: false });
+	}
 
-	// const handleClose = (event: SyntheticEvent<any, Event>, reason: SnackbarCloseReason) => {
-	// 	if (reason === 'clickaway') {
-	// 		return;
-	// 	}
-	// 	setToastData({ ...toastData, open: false });
-	// };
-
-	// return (
-	// 	<div>
-	// 		{/* <Snackbar open={toastData.open} autoHideDuration={2500} onClose={handleClose}> */}
-	// 		<Snackbar open={toastData.open} autoHideDuration={2500}>
-	// 			{/* <Alert onClose={handleClose} severity={toastData.severity}> */}
-	// 			<Alert severity={toastData.severity}>This is a success message!</Alert>
-	// 		</Snackbar>
-	// 		<h1>Überschrift!!!</h1>
-	// 	</div>
-	// );
-
+	/**
+	 * Render JSX
+	 */
 	return (
 		<Card className={classes.frame} variant="outlined">
+			<Snackbar open={toastData.open} autoHideDuration={2500} onClose={handleToastClose}>
+				{/* <Snackbar open={toastData.open} autoHideDuration={2500}> */}
+				<Alert onClose={handleToastClose} severity={toastData.severity}>
+					{/* <Alert severity={toastData.severity}>*/}
+					{toastData.message}
+				</Alert>
+			</Snackbar>
+
 			<header className={classes.header}>
 				<Typography component="h1" className={classes.h1} color="textPrimary">
 					Session Quicksave Extension Options
@@ -49,10 +91,10 @@ export default function App() {
 				<Divider component="hr" />
 			</header>
 			<CardContent className={classes.content}>
-				<OptionsForm />
+				<OptionsForm onFormChange={onFormChange} onFormError={onFormError} />
 			</CardContent>
 			<CardActions className={classes.actions}>
-				<Button>Save Settings</Button>
+				<Button onClick={onFormSubmit}>Save Settings</Button>
 			</CardActions>
 		</Card>
 	);

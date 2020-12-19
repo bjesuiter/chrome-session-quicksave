@@ -1,14 +1,28 @@
-import React, { SyntheticEvent, useState } from 'react';
-import { List, ListItem, makeStyles, Snackbar, SnackbarCloseReason, TextField } from '@material-ui/core';
-import { saveOptionsForm } from './save-options-form.function';
-import { Alert } from '@lib/shared/alert';
+import React, { useEffect, useState } from 'react';
+import { List, ListItem, makeStyles, TextField } from '@material-ui/core';
+
+import { readOptions } from '@lib/chrome/synced-storage-service';
+import type { SessionQuicksaveOptions } from '@lib/models/session-quicksave-options';
 
 const styles = makeStyles((theme) => ({
 	root: {},
 }));
 
-export function OptionsForm() {
+export function OptionsForm(props: { onFormChange: Function; onFormError: Function }) {
 	const classes = styles();
+
+	/**
+	 * Initial Data Load
+	 */
+	let initialOptions: SessionQuicksaveOptions;
+	useEffect(() => {
+		readOptions()
+			.then((options) => {
+				initialOptions = options;
+				changeFormValue('sessionsFolderId', initialOptions.sessionsFolderId);
+			})
+			.catch((err) => props.onFormError(err));
+	}, []);
 
 	/**
 	 * Form State & Handling
@@ -19,44 +33,10 @@ export function OptionsForm() {
 	});
 
 	function changeFormValue(controlName: string, value: any) {
-		setFormControls({ ...formControls, [controlName]: value });
 		console.debug(`ChangeFormValue called for '${controlName}' with new value '${value}'`);
-	}
-
-	async function handleFormSubmit(event: any) {
-		event.preventDefault();
-		console.debug('Form Submission with Data: ', formControls);
-		const result = await saveOptionsForm(formControls);
-		if (result) {
-			setToastData({
-				open: true,
-				severity: 'success',
-				message: 'Options saved successfully!',
-			});
-		} else {
-			setToastData({
-				open: true,
-				severity: 'error',
-				message: 'Error while saving Options!',
-			});
-		}
-	}
-
-	/**
-	 * Toast State & Handling
-	 */
-
-	const [toastData, setToastData] = useState({
-		open: false,
-		severity: 'success',
-		message: '',
-	});
-
-	function handleToastClose(event: SyntheticEvent<any, Event>, reason: SnackbarCloseReason) {
-		if (reason === 'clickaway') {
-			return;
-		}
-		setToastData({ ...toastData, open: false });
+		const newFormControls = { ...formControls, [controlName]: value };
+		setFormControls(newFormControls);
+		props.onFormChange(newFormControls);
 	}
 
 	/**
@@ -64,14 +44,7 @@ export function OptionsForm() {
 	 */
 
 	return (
-		<form autoComplete="off" onSubmit={handleFormSubmit}>
-			<Snackbar open={toastData.open} autoHideDuration={2500} onClose={handleToastClose}>
-				{/* <Snackbar open={toastData.open} autoHideDuration={2500}> */}
-				<Alert onClose={handleToastClose} severity={toastData.severity}>
-					{/* <Alert severity={toastData.severity}>*/}
-					{toastData.message}
-				</Alert>
-			</Snackbar>
+		<form autoComplete="off">
 			<List>
 				<ListItem>
 					<TextField
