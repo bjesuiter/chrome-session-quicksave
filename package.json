@@ -27,7 +27,7 @@
 	"devDependencies": {
 		"@stencil/core": "^1.14.0",
 		"@stencil/router": "^1.0.1",
-		"@types/chrome": "0.0.114",
+		"@types/chrome": "0.0.127",
 		"@types/jest": "^26.0.15",
 		"bestzip": "^2.1.7",
 		"esm": "^3.2.25",
