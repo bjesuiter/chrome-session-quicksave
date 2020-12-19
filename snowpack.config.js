@@ -9,6 +9,7 @@ module.exports = {
 		'projects/page-background/src': { url: '/' },
 		'projects/page-options/webroot': { url: '/', static: true },
 		'projects/page-options/src': { url: '/build' },
+		'projects/lib': { url: '/build' },
 	},
 	plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
 	install: [],
