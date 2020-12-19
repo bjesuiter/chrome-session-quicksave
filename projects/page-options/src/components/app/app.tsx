@@ -1,41 +1,7 @@
 import React, { useState } from 'react';
-import './app.css';
-// import { Button, Snackbar, SnackbarCloseReason } from '@material-ui/core';
+import { appStyles } from './app.styles';
 import MuiAlert from '@material-ui/lab/Alert';
-import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardActions, CardContent, Divider, Typography } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-	frame: {
-		margin: '40px auto',
-		width: '100%',
-		minWidth: '300px',
-		maxWidth: '900px',
-	},
-	header: {
-		background: '#5851ff',
-		color: 'white',
-		height: '56px',
-		display: 'flex',
-		alignItems: 'center',
-		boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
-	},
-	content: {
-		minHeight: '150px',
-		padding: '20px',
-	},
-	h1: {
-		fontSize: '1.4rem',
-		fontWeight: 500,
-		color: '#fff',
-		padding: '0 12px',
-	},
-	actions: {
-		display: 'flex',
-		flexFlow: 'row nowrap',
-		justifyContent: 'flex-end',
-	},
-}));
 
 function Alert(props: any) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -43,7 +9,7 @@ function Alert(props: any) {
 
 export default function App() {
 	// let initialOptions: SessionQuicksaveOptions;
-	const classes = useStyles();
+	const classes = appStyles();
 
 	const [formControls, setFormControls] = useState({
 		sessionsFolderId: '',
