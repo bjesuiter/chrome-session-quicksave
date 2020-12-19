@@ -9,6 +9,7 @@ import {
 	Snackbar,
 	SnackbarCloseReason,
 	Typography,
+	useMediaQuery,
 } from '@material-ui/core';
 import { OptionsForm } from '../options-form/options-form';
 import type { OptionPageFormControls } from '../options-form/option-page-form-controls.interface';
@@ -17,6 +18,7 @@ import { Alert } from '@lib/shared/alert';
 
 export default function App() {
 	const classes = appStyles();
+	const showBigFrame = useMediaQuery('(min-width:817px)');
 
 	/**
 	 * Form Data Handling
@@ -75,7 +77,7 @@ export default function App() {
 	 * Render JSX
 	 */
 	return (
-		<Card className={classes.frame} variant="outlined">
+		<Card variant="outlined" className={showBigFrame ? classes.frameBig : classes.frameSmall}>
 			<Snackbar open={toastData.open} autoHideDuration={2500} onClose={handleToastClose}>
 				{/* <Snackbar open={toastData.open} autoHideDuration={2500}> */}
 				<Alert onClose={handleToastClose} severity={toastData.severity}>
