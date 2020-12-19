@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { appStyles } from './app.styles';
 import {
+	Avatar,
 	Button,
 	Card,
 	CardActions,
@@ -87,6 +88,7 @@ export default function App() {
 			</Snackbar>
 
 			<header className={classes.header}>
+				<Avatar className={classes.icon} alt="Extension Icon" src="/assets/icons/down-arrow.png" />
 				<Typography component="h1" className={classes.h1} color="textPrimary">
 					Session Quicksave Extension Options
 				</Typography>

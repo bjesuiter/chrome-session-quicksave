@@ -15,12 +15,15 @@ export const appStyles = makeStyles((theme) => {
 			maxWidth: '800px',
 		},
 		header: {
-			background: '#5851ff',
+			background: '#000000ad',
 			color: 'white',
 			height: '56px',
 			display: 'flex',
 			alignItems: 'center',
 			boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
+		},
+		icon: {
+			marginLeft: '8px',
 		},
 		h1: {
 			fontSize: '1.4rem',
