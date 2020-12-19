@@ -5,9 +5,10 @@
 module.exports = {
 	mount: {
 		'webroot': { url: '/', static: true },
-		'projects/background-script': { url: '/' },
-		'projects/options-page/webroot': { url: '/', static: true },
-		'projects/options-page/src': { url: '/build' },
+		'projects/page-background/webroot': { url: '/', static: true },
+		'projects/page-background/src': { url: '/' },
+		'projects/page-options/webroot': { url: '/', static: true },
+		'projects/page-options/src': { url: '/build' },
 	},
 	plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
 	install: [],
