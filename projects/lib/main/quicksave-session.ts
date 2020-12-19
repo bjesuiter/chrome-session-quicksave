@@ -3,6 +3,7 @@ import { getTabsInWindow } from '@lib/chrome/tabs-service';
 import { showSimpleNotification } from '@lib/chrome/notification-service';
 import { readOptionSessionsFolderId } from '@lib/chrome/synced-storage-service';
 import { saveSession } from '@lib/chrome/bookmark-service';
+import { showError } from '@lib/chrome/notification-service';
 
 /**
  * This function will be called by src/global/app.ts when extension icon is clicked
@@ -20,7 +21,16 @@ export async function quicksaveSession(currentTab: chrome.tabs.Tab): Promise<voi
 
 	// this uses the first result, may break easily!
 	// replace with target folder selection via plugin later
-	const sessionFolderId = await readOptionSessionsFolderId();
+	const sessionFolderId: string | undefined = await readOptionSessionsFolderId();
+
+	if (sessionFolderId === undefined) {
+		showError(
+			'Error wile saving session',
+			'No valid session folder configured. Please go to the options for this extension and configure a valid folder for storing the sessions!'
+		);
+		return;
+	}
+
 	const tabs: chrome.tabs.Tab[] = await getTabsInWindow(currentWindowId);
 	await saveSession(sessionFolderId, sessionName, tabs);
 

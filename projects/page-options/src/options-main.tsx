@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './options-page/app/app';
+import App from './components/app/app';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 ReactDOM.render(

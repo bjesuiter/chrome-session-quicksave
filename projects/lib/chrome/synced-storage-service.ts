@@ -1,5 +1,5 @@
 import { deserialize, serialize } from 'serializr';
-import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
+import { SessionQuicksaveOptions } from '@lib/models/session-quicksave-options';
 
 export function saveOptions(options: SessionQuicksaveOptions): Promise<void> {
 	return new Promise((resolve, reject) => {

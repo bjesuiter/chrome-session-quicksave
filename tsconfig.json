@@ -9,6 +9,7 @@
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
+    "experimentalDecorators": true,
     "baseUrl": "./",
     /* paths - If you configure Snowpack import aliases, add them here. */
     "paths": {
