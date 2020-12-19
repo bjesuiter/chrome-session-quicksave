@@ -28,6 +28,7 @@
 		"@types/jest": "^26.0.19",
 		"@types/react": "^17.0.0",
 		"@types/react-dom": "^17.0.0",
+		"@types/snowpack-env": "^2.3.3",
 		"bestzip": "^2.1.7",
 		"esm": "^3.2.25",
 		"jest": "^26.6.3",
