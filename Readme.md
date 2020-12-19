@@ -51,6 +51,17 @@ Icon Pack:
 
 ## Changelog
 
+### Next
+
+Switch base plattform to snowpack, typescript and react & compile to esm.
+Based on this [example repo](https://github.com/bjesuiter/react-snowpack-chrome-extension)
+
+Benefits:
+
+- no problems with unsafe eval caused by lazy loaded components (like with Stencil & Ionic)
+- no big bloat like with Angular
+- multi-entrypoint compiles (for background script & options page) by simple configs in snowpack
+
 ### 0.3.0 (Beta) - 2020-11-13 - added basic options page & Session Folder initialization after install
 
 - use StencilJS as robust base for background script, toolbar icon click handler & options page
