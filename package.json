@@ -35,6 +35,7 @@
 		"load-json-file": "^6.2.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^2.1.2",
+		"snowpack": "^2.18.5",
 		"tslib": "^2.0.0",
 		"typescript": "^3.9.5",
 		"workbox-build": "4.3.1",
