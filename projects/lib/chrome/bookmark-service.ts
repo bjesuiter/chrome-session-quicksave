@@ -14,9 +14,7 @@ export const BOOKMARK_BAR_FOLDER_ID = '1';
  * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNode>>} A promise which resolves to an array of bookmark nodes
  * 																 for all specified bookmarkIds (regardless of hierarchy)
  */
-export function getBookmarkNodes(
-	...bookmarkIds: string[]
-): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
+export function getBookmarkNodes(...bookmarkIds: string[]): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
 	return new Promise((resolve) => {
 		chrome.bookmarks.get(bookmarkIds, resolve);
 	});
@@ -27,9 +25,7 @@ export function getBookmarkNodes(
  * @param {string} bookmarkId
  * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>} Promise which resolves to a single bookmark node
  */
-export async function getBookmarkNode(
-	bookmarkId: string
-): Promise<chrome.bookmarks.BookmarkTreeNode | undefined> {
+export async function getBookmarkNode(bookmarkId: string): Promise<chrome.bookmarks.BookmarkTreeNode | undefined> {
 	const [node] = await getBookmarkNodes(bookmarkId);
 	return node;
 }
@@ -38,7 +34,7 @@ export async function getBookmarkNode(
  * Returns the root node of bookmarks
  * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>}
  */
-export function getBookmarkRoot(): Promise<chrome.bookmarks.BookmarkTreeNode> {
+export function getBookmarkRoot(): Promise<chrome.bookmarks.BookmarkTreeNode | undefined> {
 	return getBookmarkNode('0');
 }
 
@@ -47,9 +43,7 @@ export function getBookmarkRoot(): Promise<chrome.bookmarks.BookmarkTreeNode> {
  * @param {*} parentId
  * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNode>>} A Promise which resolves to an array of child nodes from the specified parentId
  */
-export function getBookmarkChildren(
-	parentId: any
-): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
+export function getBookmarkChildren(parentId: any): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
 	return new Promise((resolve) => {
 		chrome.bookmarks.getChildren(parentId, resolve);
 	});
@@ -72,9 +66,7 @@ export function getBookmarkTreeComplete(): Promise<Array<chrome.bookmarks.Bookma
  * @param {string} folderName
  * @returns {Promise<Array<chrome.bookmarks.BookmarkTreeNode>>} array of bookmark nodes for result folders
  */
-export function searchBookmarkFolders(
-	folderName: string
-): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
+export function searchBookmarkFolders(folderName: string): Promise<Array<chrome.bookmarks.BookmarkTreeNode>> {
 	return new Promise((resolve) => {
 		const searchQuery: chrome.bookmarks.BookmarkSearchQuery = {
 			url: undefined,
@@ -116,10 +108,7 @@ export async function getBookmarkFolderByName(
  * @param {string} folderName the name of the new bookmark folder
  * @returns {Promise<chrome.bookmarks.BookmarkTreeNode>}
  */
-export function createBookmarkFolder(
-	parentId: string,
-	folderName: string
-): Promise<chrome.bookmarks.BookmarkTreeNode> {
+export function createBookmarkFolder(parentId: string, folderName: string): Promise<chrome.bookmarks.BookmarkTreeNode> {
 	return new Promise((resolve) => {
 		chrome.bookmarks.create({ parentId, title: folderName, url: undefined }, resolve);
 	});
@@ -148,8 +137,7 @@ export async function createBookmark(
  */
 export async function createBookmarksForTabs(parentId: string, tabs: Array<chrome.tabs.Tab>) {
 	const bookmarkPromises = tabs.map((tab) => {
-		const bookmarkUrl =
-			tab.url || chrome.extension.getURL('../assets/error-htmls/illegal-or-missing-url.html');
+		const bookmarkUrl = tab.url || chrome.extension.getURL('../assets/error-htmls/illegal-or-missing-url.html');
 		let bookmarkTitle = tab.title || 'Tab without title';
 		if (tab.url === undefined) {
 			bookmarkTitle = `No Url: ${bookmarkTitle}`;
