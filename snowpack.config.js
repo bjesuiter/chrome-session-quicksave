@@ -7,7 +7,7 @@ module.exports = {
 		'webroot': { url: '/', static: true },
 		'projects/background-script': { url: '/' },
 		'projects/options-page/webroot': { url: '/', static: true },
-		'projects/options-page/src': { url: '/dist' },
+		'projects/options-page/src': { url: '/build' },
 	},
 	plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
 	install: [],
@@ -17,6 +17,7 @@ module.exports = {
 	},
 	buildOptions: {
 		metaDir: 'private/snowpack',
+		out: 'dist',
 	},
 	proxy: {},
 	alias: {
