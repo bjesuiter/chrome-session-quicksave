@@ -18,6 +18,7 @@
 		"@bjesuiter/serializr-helpers": "^2.2.1",
 		"@datorama/akita": "^5.3.0",
 		"@material-ui/core": "^4.11.2",
+		"@material-ui/icons": "^4.11.2",
 		"@material-ui/lab": "^4.0.0-alpha.57",
 		"date-fns": "^2.16.1",
 		"react": "^17.0.1",
