@@ -3,6 +3,7 @@ import { List, ListItem, makeStyles, TextField } from '@material-ui/core';
 
 import { readOptions } from '@lib/chrome/synced-storage-service';
 import type { SessionQuicksaveOptions } from '@lib/models/session-quicksave-options';
+import { BookmarkFolderSelector } from '../bookmark-folder-selector/bookmark-folder-selector';
 
 const styles = makeStyles((theme) => ({
 	root: {},
@@ -27,7 +28,6 @@ export function OptionsForm(props: { onFormChange: Function; onFormError: Functi
 	/**
 	 * Form State & Handling
 	 */
-
 	const [formControls, setFormControls] = useState({
 		sessionsFolderId: '',
 	});
@@ -46,6 +46,12 @@ export function OptionsForm(props: { onFormChange: Function; onFormError: Functi
 	return (
 		<form autoComplete="off">
 			<List>
+				<ListItem>
+					<h3>Which bookmark folder should be used to store sessions?</h3>
+				</ListItem>
+				<ListItem>
+					<BookmarkFolderSelector selectedFolderId={formControls.sessionsFolderId} />
+				</ListItem>
 				<ListItem>
 					<TextField
 						id="bookmark-folder-id"
