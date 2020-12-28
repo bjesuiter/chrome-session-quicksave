@@ -17,7 +17,7 @@ export const appStyles = makeStyles((theme) => {
 		header: {
 			background: '#000000ad',
 			color: 'white',
-			height: '56px',
+			padding: '25px',
 			display: 'flex',
 			alignItems: 'center',
 			boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
