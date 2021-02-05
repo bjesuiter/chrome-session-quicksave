@@ -11,7 +11,7 @@
 		"postbuild": "run-s add-version-to-manifest echo:finished",
 		"echo:finished": "echo 'Build finished!'",
 		"generate-dist-zip": "run-s build:clean zip:dist",
-		"add-version-to-manifest": "node -r esm dev-scripts/add-version-to-manifest.js",
+		"add-version-to-manifest": "node -r esm tools/add-version-to-manifest.js",
 		"zip:dist": "bestzip deploy.zip dist/*"
 	},
 	"dependencies": {
