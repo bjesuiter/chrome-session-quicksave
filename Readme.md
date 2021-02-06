@@ -6,6 +6,12 @@ A Chrome extension for quickly saving all open tabs inside a window into the bro
 
 see https://developer.chrome.com/webstore/publish
 
+### Short version
+
+- `npm run pack-release`
+- upload zip to chrome developer console
+- publish
+
 ## Icon Attributions
 
 This project uses Icons from this icon pack:  
