@@ -3,22 +3,19 @@
  */
 
 const path = require('path');
-const loadJson = require('load-json-file');
+const pkg = require('../package.json');
 
 module.exports = function (snowpackConfig, pluginOptions) {
 	return {
 		name: 'add-pkg-version-to-manifest',
-		resolve: {
-			input: ['.json'],
-			output: ['.json'],
-		},
-		async load({ filePath }) {
-			if (path.basename(filePath) === 'manifest' && path.extname(filePath) === '.json') {
-				const packageJson = await loadJson('../package.json');
-				const manifestObject = JSON.parse(contents);
-				manifestObject.version = packageJson.version;
-				console.log(`Added version ${manifestObject.version} to ${filePath}`);
-				return JSON.stringify(manifestObject);
+
+		async transform({ id, contents }) {
+			const filename = path.basename(id);
+			if (filename === 'manifest.json') {
+				const manifest = JSON.parse(contents);
+				manifest.version = pkg.version;
+				console.info(`[add-pkg-version-to-manifest.js] Added version ${manifest.version} to ${filename}`);
+				return JSON.stringify(manifest, null, '  ');
 			}
 		},
 	};

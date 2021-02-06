@@ -12,7 +12,7 @@ module.exports = {
 		'projects/page-options/src': { url: '/build' },
 		'projects/lib': { url: '/build' },
 	},
-	plugins: ['./tools/add-pkg-version-to-manifest.js', '@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
+	plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript', './tools/add-pkg-version-to-manifest.js'],
 	routes: [{ match: 'routes', src: '.*', dest: '/options.html' }],
 	buildOptions: {
 		metaUrlPath: 'private/snowpack',
