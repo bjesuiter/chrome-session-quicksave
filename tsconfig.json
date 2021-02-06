@@ -2,8 +2,8 @@
 {
   "include": [
     "types",
-    "src/page-options",
-    "src/page-background",
+    "src/page.options",
+    "src/page.background",
     "src/lib",
   ],
   "compilerOptions": {
@@ -19,10 +19,10 @@
         "src/lib/*"
       ],
       "@page-options/*": [
-        "src/page-options/src/*"
+        "src/page.options/src/*"
       ],
       "@page-background/*": [
-        "src/page-background/*"
+        "src/page.background/*"
       ]
     },
     /* noEmit - Snowpack builds (emits) files, not tsc. */

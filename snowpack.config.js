@@ -9,28 +9,25 @@ module.exports = {
 		'./tools/add-pkg-version-to-manifest.js',
 	],
 	buildOptions: {
-		metaUrlPath: 'private/snowpack',
+		metaUrlPath: 'snowpack',
 		out: 'dist',
 		// watch: true,
 	},
 	packageOptions: {
-		knownEntrypoints: [
-			'./src/page-background/webroot/background.html',
-			'./src/page-options/webroot/options.html',
-		],
+		knownEntrypoints: ['./src/page.background/background.html', './src/webroot/options.html'],
 	},
 	alias: {
 		'@lib': './src/lib',
-		'@page-options': './projects/page-options/src',
+		'@page-options': './src/page-options/src',
 		'@page-background': './src/page-background',
 	},
 	mount: {
-		'src/': { url: '/' },
+		// builds especially manifest => avoids mapping of 'src/' to '/', which causes trouble with import filepaths in my code
+		'src/webroot': { url: '/' },
+		'src/page.background/': { url: '/' },
 		'src/assets': { url: '/assets', static: true },
-		'src/page-background/': { url: '/' },
-		'src/page-options/': { url: '/' },
-		'src/page-options/src': { url: '/build' },
 		'src/lib': { url: '/build' },
+		'src/page.options/': { url: '/build' },
 	},
 	routes: [{ match: 'routes', src: '.*', dest: '/options.html' }],
 };
