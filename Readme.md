@@ -28,7 +28,6 @@ Icon Pack:
 
 - add an options page for extension configuration, allow config of
   - Default Behavior when one specific session folder does already exist (overwrite, create new, ask)
-- Add a component for visual selection of a parent bookmark folder for storing the session folders
 
 ### Migrating to Chrome Manifest V3
 
@@ -51,7 +50,7 @@ Icon Pack:
 
 ## Changelog
 
-### Next
+### 0.4.0 (Beta) - 2021-02-06 - Snowpack & 'Sessions' Folder Selector
 
 Switch base plattform to snowpack, typescript and react & compile to esm.
 Based on this [example repo](https://github.com/bjesuiter/react-snowpack-chrome-extension)
@@ -61,6 +60,10 @@ Benefits:
 - no problems with unsafe eval caused by lazy loaded components (like with Stencil & Ionic)
 - no big bloat like with Angular
 - multi-entrypoint compiles (for background script & options page) by simple configs in snowpack
+
+#### Additional Changes
+
+- finish selector component for 'Sessions' Folder on options page
 
 ### 0.3.0 (Beta) - 2020-11-13 - added basic options page & Session Folder initialization after install
 
