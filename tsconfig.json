@@ -18,10 +18,10 @@
       "@lib/*": [
         "src/lib/*"
       ],
-      "@page-options/*": [
-        "src/page.options/src/*"
+      "@page.options/*": [
+        "src/page.options/*"
       ],
-      "@page-background/*": [
+      "@page.background/*": [
         "src/page.background/*"
       ]
     },
