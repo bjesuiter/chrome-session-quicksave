@@ -11,7 +11,6 @@ module.exports = {
 	buildOptions: {
 		metaUrlPath: 'snowpack',
 		out: 'dist',
-		// watch: true,
 	},
 	packageOptions: {
 		knownEntrypoints: ['./src/page.background/background.html', './src/webroot/options.html'],

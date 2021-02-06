@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "snowpack dev",
 		"build": "snowpack build",
-		"build:watch": "snowpack build",
+		"build:watch": "snowpack build --watch",
 		"build:clean": "snowpack build --clean",
 		"echo:finished": "echo 'Build finished!'",
 		"generate-dist-zip": "run-s build:clean zip:dist",
