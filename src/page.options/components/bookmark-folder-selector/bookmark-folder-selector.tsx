@@ -27,6 +27,7 @@ export function BookmarkFolderSelector(props: any) {
 
 	const handleSelect = (_: ChangeEvent<{}>, nodeIds: string[]) => {
 		setSelected(nodeIds);
+    props.onNodeSelect(nodeIds[0]);
 	};
 
 	const renderTree = (node: chrome.bookmarks.BookmarkTreeNode) =>

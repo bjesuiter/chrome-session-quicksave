@@ -50,12 +50,14 @@ export function OptionsForm(props: { onFormChange: Function; onFormError: Functi
 					<h3>Which bookmark folder should be used to store sessions?</h3>
 				</ListItem>
 				<ListItem>
-					<BookmarkFolderSelector selectedFolderId={formControls.sessionsFolderId} />
+					<BookmarkFolderSelector
+          onNodeSelect={(selectedId: string) => changeFormValue('sessionsFolderId', selectedId)}
+          selectedFolderId={formControls.sessionsFolderId} />
 				</ListItem>
 				<ListItem>
 					<TextField
 						id="bookmark-folder-id"
-						type="number"
+						type="string"
 						fullWidth={true}
 						variant="filled"
 						required
