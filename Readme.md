@@ -6,22 +6,11 @@ A Chrome extension for quickly saving all open tabs inside a window into the bro
 
 see https://developer.chrome.com/webstore/publish
 
-## Rollup Setup
+### Short version
 
-This extension will be packaged with rollup.  
-The following plugin is used: <https://www.npmjs.com/package/rollup-plugin-chrome-extension>
-
-Rollup will generate the following fields in manifest.json:
-
-- manifest_version
-- version (will be copied from package.json)
-- name
-- description
-
-## Specialities about this repo
-
-- uses Pikapkg ESM Build of React (real react esm build should come around react version 17 or so),  
-  see: https://github.com/pikapkg/react
+- `npm run pack-release`
+- upload zip to chrome developer console
+- publish
 
 ## Icon Attributions
 
@@ -41,9 +30,15 @@ Icon Pack:
 
 ## Next Steps / Improvements for 1.0.0
 
+### General
+
 - add an options page for extension configuration, allow config of
   - Default Behavior when one specific session folder does already exist (overwrite, create new, ask)
-- Add a component for visual selection of a parent bookmark folder for storing the session folders
+
+### Migrating to Chrome Manifest V3
+
+- [Migration Guide](https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#action-api-unification)
+- [Migration Checklist](https://developer.chrome.com/docs/extensions/mv3/mv3-migration-checklist/)
 
 ## Ideas after 1.0.0
 
@@ -60,6 +55,21 @@ Icon Pack:
 ---
 
 ## Changelog
+
+### 0.4.0 (Beta) - 2021-02-06 - Snowpack & 'Sessions' Folder Selector
+
+Switch base plattform to snowpack, typescript and react & compile to esm.
+Based on this [example repo](https://github.com/bjesuiter/react-snowpack-chrome-extension)
+
+Benefits:
+
+- no problems with unsafe eval caused by lazy loaded components (like with Stencil & Ionic)
+- no big bloat like with Angular
+- multi-entrypoint compiles (for background script & options page) by simple configs in snowpack
+
+#### Additional Changes
+
+- finish selector component for 'Sessions' Folder on options page
 
 ### 0.3.0 (Beta) - 2020-11-13 - added basic options page & Session Folder initialization after install
 

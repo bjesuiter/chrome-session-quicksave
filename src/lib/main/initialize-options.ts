@@ -2,11 +2,13 @@ import {
 	bookmarkFolderExists,
 	getBookmarkFolderByName,
 	getBookmarkNode,
-} from '@lib/chrome-services/bookmark-service';
-import { readOptions, saveOptions } from '@lib/chrome-services/synced-storage-service';
-import { SessionQuicksaveOptions } from '@models/session-quicksave-options';
+	BOOKMARK_BAR_FOLDER_ID,
+	createBookmarkFolder,
+} from '@lib/chrome/bookmark-service';
+import { showError } from '@lib/chrome/notification-service';
+import { readOptions, saveOptions } from '@lib/chrome/synced-storage-service';
+import { SessionQuicksaveOptions } from '@lib/models/session-quicksave-options';
 import { serialize } from 'serializr';
-import { BOOKMARK_BAR_FOLDER_ID, createBookmarkFolder } from '../chrome-services/bookmark-service';
 
 export const DEFAULT_SESSIONS_FOLDER_NAME = 'Sessions';
 
@@ -39,10 +41,6 @@ export async function initializeOptions() {
 
 	const sessionFolderNode = await ensureDefaultSessionFolderAvailability();
 
-	if (!sessionFolderNode) {
-		throw new Error(`Critical Error: Creation of default sessions folder failed!`);
-	}
-
 	console.log(`The ID of the Folder Named ${sessionFolderNode.title} is: `, sessionFolderNode.id);
 	console.log(`Creating new Options object...`);
 	const options = new SessionQuicksaveOptions(sessionFolderNode.id);
@@ -60,26 +58,24 @@ export async function initializeOptions() {
 /**
  * @returns Session Folder Node
  */
-async function ensureDefaultSessionFolderAvailability(): Promise<
-	chrome.bookmarks.BookmarkTreeNode
-> {
-	const folderAvailable = await bookmarkFolderExists(
-		BOOKMARK_BAR_FOLDER_ID,
-		DEFAULT_SESSIONS_FOLDER_NAME
-	);
+async function ensureDefaultSessionFolderAvailability(): Promise<chrome.bookmarks.BookmarkTreeNode> {
+	const folderAvailable = await bookmarkFolderExists(BOOKMARK_BAR_FOLDER_ID, DEFAULT_SESSIONS_FOLDER_NAME);
 	if (!folderAvailable) {
 		await createBookmarkFolder(BOOKMARK_BAR_FOLDER_ID, DEFAULT_SESSIONS_FOLDER_NAME);
+	} else {
+		console.log('Default sessions folder already available: ', folderAvailable);
 	}
-	const defaultSessionFolderNode = await getBookmarkFolderByName(
-		BOOKMARK_BAR_FOLDER_ID,
-		DEFAULT_SESSIONS_FOLDER_NAME
-	);
-	console.log('Default sessions folder already available: ', defaultSessionFolderNode);
+	const defaultSessionFolderNode = await getBookmarkFolderByName(BOOKMARK_BAR_FOLDER_ID, DEFAULT_SESSIONS_FOLDER_NAME);
+
+	if (defaultSessionFolderNode === undefined) {
+		throw new Error(`[Critical Error] Can't create default session folder!
+    Please inform the developer about this error at bjesuiter@gmail.com!`);
+	}
 
 	return defaultSessionFolderNode;
 }
 
-async function isSessionFolderIdValid(sessionFolderId) {
+async function isSessionFolderIdValid(sessionFolderId: string | undefined) {
 	if (!sessionFolderId) return false;
 	const sessionsFolderNode = await getBookmarkNode(sessionFolderId);
 	return !!sessionsFolderNode;

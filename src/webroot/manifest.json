@@ -23,7 +23,7 @@
 		},
 		"default_title": "Session Quicksave"
 	},
-	"options_page": "index.html",
+	"options_page": "options.html",
 	"web_accessible_resources": [
 		{
 			"resources": [

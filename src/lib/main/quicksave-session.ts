@@ -1,8 +1,9 @@
-import format from 'date-fns/format';
-import { getTabsInWindow } from '@lib/chrome-services/tabs-service';
-import { showSimpleNotification } from '@lib/chrome-services/notification-service';
-import { readOptionSessionsFolderId } from '@lib/chrome-services/synced-storage-service';
-import { saveSession } from '@lib/chrome-services/bookmark-service';
+import { format } from 'date-fns';
+import { getTabsInWindow } from '@lib/chrome/tabs-service';
+import { showSimpleNotification } from '@lib/chrome/notification-service';
+import { readOptionSessionsFolderId } from '@lib/chrome/synced-storage-service';
+import { saveSession } from '@lib/chrome/bookmark-service';
+import { showError } from '@lib/chrome/notification-service';
 
 /**
  * This function will be called by src/global/app.ts when extension icon is clicked
@@ -11,10 +12,7 @@ import { saveSession } from '@lib/chrome-services/bookmark-service';
 export async function quicksaveSession(currentTab: chrome.tabs.Tab): Promise<void> {
 	const currentWindowId: number = currentTab.windowId;
 
-	const sessionName = prompt(
-		'Please insert a name for the session',
-		'New Session ' + format(new Date(), 'yyyy-MM-dd')
-	);
+	const sessionName = prompt('Please insert a name for the session', 'New Session ' + format(new Date(), 'yyyy-MM-dd'));
 
 	// user clicked on 'cancel' for the session name promt
 	if (!sessionName || sessionName.length < 0) {
@@ -23,7 +21,16 @@ export async function quicksaveSession(currentTab: chrome.tabs.Tab): Promise<voi
 
 	// this uses the first result, may break easily!
 	// replace with target folder selection via plugin later
-	const sessionFolderId = await readOptionSessionsFolderId();
+	const sessionFolderId: string | undefined = await readOptionSessionsFolderId();
+
+	if (sessionFolderId === undefined) {
+		showError(
+			'Error wile saving session',
+			'No valid session folder configured. Please go to the options for this extension and configure a valid folder for storing the sessions!'
+		);
+		return;
+	}
+
 	const tabs: chrome.tabs.Tab[] = await getTabsInWindow(currentWindowId);
 	await saveSession(sessionFolderId, sessionName, tabs);
 

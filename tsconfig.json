@@ -1,21 +1,38 @@
+// tsconfig for snowpack
 {
-  "extends": "./tsconfig.base.json",
+  "include": [
+    "types",
+    "src/page.options",
+    "src/page.background",
+    "src/lib",
+  ],
   "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "experimentalDecorators": true,
     "baseUrl": "./",
+    /* paths - If you configure Snowpack import aliases, add them here. */
     "paths": {
       "@lib/*": [
         "src/lib/*"
       ],
-      "@models/*": [
-        "src/models/*"
+      "@page.options/*": [
+        "src/page.options/*"
+      ],
+      "@page.background/*": [
+        "src/page.background/*"
       ]
     },
-    "outDir": "www"
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    /* noEmit - Snowpack builds (emits) files, not tsc. */
+    "noEmit": true,
+    /* Additional Options */
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error"
+  }
 }

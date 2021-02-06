@@ -1,6 +1,7 @@
 ## Custom Ignores ##
 dist
 build
+export
 *.zip
 
 ## Stencil JS Gitignores ##
