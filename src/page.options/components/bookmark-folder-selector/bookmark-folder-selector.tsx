@@ -25,9 +25,9 @@ export function BookmarkFolderSelector(props: any) {
 		setExpanded(nodeIds);
 	};
 
-	const handleSelect = (_: ChangeEvent<{}>, nodeIds: string[]) => {
-		setSelected(nodeIds);
-    props.onNodeSelect(nodeIds[0]);
+	const handleSelect = (_: ChangeEvent<{}>, nodeId: string) => {
+		setSelected(nodeId);
+    props.onNodeSelect(nodeId);
 	};
 
 	const renderTree = (node: chrome.bookmarks.BookmarkTreeNode) =>
