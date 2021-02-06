@@ -2,7 +2,9 @@
 {
   "include": [
     "types",
-    "projects",
+    "src/page-options",
+    "src/page-background",
+    "src/lib",
   ],
   "compilerOptions": {
     "module": "esnext",
@@ -14,13 +16,13 @@
     /* paths - If you configure Snowpack import aliases, add them here. */
     "paths": {
       "@lib/*": [
-        "projects/lib/*"
+        "src/lib/*"
       ],
       "@page-options/*": [
-        "projects/page-options/src/*"
+        "src/page-options/src/*"
       ],
       "@page-background/*": [
-        "projects/page-background/src/*"
+        "src/page-background/*"
       ]
     },
     /* noEmit - Snowpack builds (emits) files, not tsc. */
