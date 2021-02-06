@@ -7,6 +7,9 @@ import { BookmarkFolderSelector } from '../bookmark-folder-selector/bookmark-fol
 
 const styles = makeStyles((theme) => ({
 	root: {},
+  noOverflow: {
+    overflowY: 'auto'
+  }
 }));
 
 export function OptionsForm(props: { onFormChange: Function; onFormError: Function }) {
@@ -49,7 +52,7 @@ export function OptionsForm(props: { onFormChange: Function; onFormError: Functi
 				<ListItem>
 					<h3>Which bookmark folder should be used to store sessions?</h3>
 				</ListItem>
-				<ListItem>
+				<ListItem className={classes.noOverflow}>
 					<BookmarkFolderSelector
           onNodeSelect={(selectedId: string) => changeFormValue('sessionsFolderId', selectedId)}
           selectedFolderId={formControls.sessionsFolderId} />
