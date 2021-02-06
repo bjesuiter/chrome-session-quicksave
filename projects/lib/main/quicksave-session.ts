@@ -1,4 +1,4 @@
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 import { getTabsInWindow } from '@lib/chrome/tabs-service';
 import { showSimpleNotification } from '@lib/chrome/notification-service';
 import { readOptionSessionsFolderId } from '@lib/chrome/synced-storage-service';

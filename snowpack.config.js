@@ -4,24 +4,21 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
 	mount: {
-		'webroot': { url: '/', static: true },
+		'src/assets': { url: '/', static: true },
+		'src/': { url: '/' },
 		'projects/page-background/webroot': { url: '/', static: true },
 		'projects/page-background/src': { url: '/' },
 		'projects/page-options/webroot': { url: '/', static: true },
 		'projects/page-options/src': { url: '/build' },
 		'projects/lib': { url: '/build' },
 	},
-	plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
-	install: [],
-	installOptions: {},
-	devOptions: {
-		fallback: 'options.html',
-	},
+	plugins: ['./tools/add-pkg-version-to-manifest.js', '@snowpack/plugin-react-refresh', '@snowpack/plugin-typescript'],
+	routes: [{ match: 'routes', src: '.*', dest: '/options.html' }],
 	buildOptions: {
-		metaDir: 'private/snowpack',
+		metaUrlPath: 'private/snowpack',
 		out: 'dist',
+		// watch: true,
 	},
-	proxy: {},
 	alias: {
 		'@lib': './projects/lib',
 		'@page-options': './projects/page-options/src',
